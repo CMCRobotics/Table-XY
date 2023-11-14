@@ -3,6 +3,7 @@ Development of a Table XY based on 4xiDraw
 
 Directories:
 - docs: General documents
+- components: Components to be bought, related actions
 - hardware: Electronic hardware
 -     hardware / docs: documents related to Electronic hardware
 -     hardware / schema: Schemas/pcb of created/bought cards
