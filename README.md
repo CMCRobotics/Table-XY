@@ -6,9 +6,12 @@ Directories:
 - components: Components to be bought, related actions
 - hardware: Electronic hardware
 -     hardware / docs: documents related to Electronic hardware
--     hardware / schema: Schemas/pcb of created/bought cards
+-     hardware / schema: Schemas/pcb of created cards
 - mechanic: Mechanic elements
 -     mechanic / docs: documents related to mechanic elements
--     mechanic / printed: documents related to 3D printed elements
+-     mechanic / print 3D: documents related to 3D printed elements
 - software: programs and related elements
 -     software / docs: documents
+- wiki: elements for wiki page
+-     wiki / images: Images
+-     wiki / docs: Documents
