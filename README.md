@@ -14,4 +14,4 @@ Directories:
 -     software / docs: documents
 - wiki: elements for wiki page
 -     wiki / images: Images
--     wiki / docs: Documents
+-     wiki / docs: Documents.
