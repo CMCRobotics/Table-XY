@@ -9,7 +9,8 @@ Directories:
 -     hardware / schema: Schemas/pcb of created cards
 - mechanic: Mechanic elements
 -     mechanic / docs: documents related to mechanic elements
--     mechanic / print 3D: documents related to 3D printed elements
+-     mechanic / Files: documents related to mechanical elements
+-     mechanic / Printer3D-Prusa: documents related to Prusa Printer-3D
 - software: programs and related elements
 -     software / docs: documents
 - wiki: elements for wiki page
