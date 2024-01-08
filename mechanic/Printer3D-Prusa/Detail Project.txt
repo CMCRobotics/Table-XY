@@ -1,0 +1,56 @@
+Project 3D: TableXY-Part1: 
+	base
+	End Y
+	New EndX
+	Pen_holder_1
+
+; filament used [mm] = 366177.36
+; filament used [cm3] = 46.02
+; filament used [g] = 57.06
+; filament cost = 1.45
+; total filament used [g] = 57.06
+; total filament cost = 1.45
+; total filament used for wipe tower [g] = 0.00
+; estimated printing time (normal mode) = 5h 31m 11s
+; estimated printing time (silent mode) = 5h 35m 30s
+; estimated first layer printing time (normal mode) = 27m 41s
+; estimated first layer printing time (silent mode) = 27m 45s
+
+===========================================================
+
+Project 3D: TableXY-Part2: 
+	newEnd40x20_1
+	servo Holder
+	Taller_Arduino_support
+	tensor
+
+; filament used [mm] = 304089.76
+; filament used [cm3] = 38.21
+; filament used [g] = 47.38
+; filament cost = 1.20
+; total filament used [g] = 47.38
+; total filament cost = 1.20
+; total filament used for wipe tower [g] = 0.00
+; estimated printing time (normal mode) = 4h 31m 34s
+; estimated printing time (silent mode) = 4h 35m 27s
+; estimated first layer printing time (normal mode) = 18m 45s
+; estimated first layer printing time (silent mode) = 18m 49s
+
+===========================================================
+Project 3D: TableXY-Part3: 
+	Arduino Grip
+	base with nuts
+	End Y 2
+	Pen_Carriage_1
+
+; filament used [mm] = 282681.16
+; filament used [cm3] = 35.52
+; filament used [g] = 44.05
+; filament cost = 1.12
+; total filament used [g] = 44.05
+; total filament cost = 1.12
+; total filament used for wipe tower [g] = 0.00
+; estimated printing time (normal mode) = 4h 9m 35s
+; estimated printing time (silent mode) = 4h 12m 53s
+; estimated first layer printing time (normal mode) = 24m 58s
+; estimated first layer printing time (silent mode) = 25m 3s
