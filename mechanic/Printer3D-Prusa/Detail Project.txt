@@ -4,17 +4,16 @@ Project 3D: TableXY-Part1:
 	New EndX
 	Pen_holder_1
 
-; filament used [mm] = 366177.36
-; filament used [cm3] = 46.02
-; filament used [g] = 57.06
+; filament used [mm] = 365371.44
+; filament used [cm3] = 45.91
+; filament used [g] = 56.93
 ; filament cost = 1.45
-; total filament used [g] = 57.06
+; total filament used [g] = 56.93
 ; total filament cost = 1.45
 ; total filament used for wipe tower [g] = 0.00
-; estimated printing time (normal mode) = 5h 31m 11s
-; estimated printing time (silent mode) = 5h 35m 30s
-; estimated first layer printing time (normal mode) = 27m 41s
-; estimated first layer printing time (silent mode) = 27m 45s
+; estimated printing time (normal mode) = 6h 56m 10s
+; estimated printing time (silent mode) = 7h 1m 32s
+
 
 ===========================================================
 
@@ -24,17 +23,16 @@ Project 3D: TableXY-Part2:
 	Taller_Arduino_support
 	tensor
 
-; filament used [mm] = 304089.76
-; filament used [cm3] = 38.21
-; filament used [g] = 47.38
-; filament cost = 1.20
-; total filament used [g] = 47.38
-; total filament cost = 1.20
+; filament used [mm] = 305592.35
+; filament used [cm3] = 38.40
+; filament used [g] = 47.62
+; filament cost = 1.21
+; total filament used [g] = 47.62
+; total filament cost = 1.21
 ; total filament used for wipe tower [g] = 0.00
-; estimated printing time (normal mode) = 4h 31m 34s
-; estimated printing time (silent mode) = 4h 35m 27s
-; estimated first layer printing time (normal mode) = 18m 45s
-; estimated first layer printing time (silent mode) = 18m 49s
+; estimated printing time (normal mode) = 5h 42m 57s
+; estimated printing time (silent mode) = 5h 47m 30s
+
 
 ===========================================================
 Project 3D: TableXY-Part3: 
@@ -43,14 +41,12 @@ Project 3D: TableXY-Part3:
 	End Y 2
 	Pen_Carriage_1
 
-; filament used [mm] = 282681.16
-; filament used [cm3] = 35.52
-; filament used [g] = 44.05
+; filament used [mm] = 282268.49
+; filament used [cm3] = 35.47
+; filament used [g] = 43.98
 ; filament cost = 1.12
-; total filament used [g] = 44.05
+; total filament used [g] = 43.98
 ; total filament cost = 1.12
 ; total filament used for wipe tower [g] = 0.00
-; estimated printing time (normal mode) = 4h 9m 35s
-; estimated printing time (silent mode) = 4h 12m 53s
-; estimated first layer printing time (normal mode) = 24m 58s
-; estimated first layer printing time (silent mode) = 25m 3s
+; estimated printing time (normal mode) = 5h 9m 52s
+; estimated printing time (silent mode) = 5h 13m 39s
