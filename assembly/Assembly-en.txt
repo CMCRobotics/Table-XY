@@ -1,0 +1,70 @@
+I recommend the following building sequence:
+
+- Slide two LM8UU in each of the two longest smooth rods.
+	
+- Slide the rods into the motor pieces, one on each side (leave an extra 20mm of the rods in one of the two sides protruding from the part towards the motor, this will later be used for supporting the Arduino holder).
+    
+- Insert the M10 threaded rods so each one supports one side of the motor-supporting pieces using a nut on each side (total 8 M10 nuts).
+
+- Mount the nema 17 stepper motors on the two big plastic parts using 8 M3 screws (8mm long).
+    
+- Insert 8 M3 nuts into the nut-holders in the bottom squared carriage and place it supporting the LM8UU linear bearings you inserted in the long smooth rods already installed.
+    
+- Take the remaining (shorter) two smooth rods and insert two LM8UU linear bearings on each one of them.
+    
+- Insert the two endY parts on each end of the pair of smooth rods. Now you have the second axis done.
+    
+- Insert the top square carriage over the 4 linear bearings of the shorter smooth rods.
+    
+- Insert 4 M30 30mm-long screws in the 4 central holes of the top square carriage, put the carriage upside-down carefully so the head of the screws will lay on the table and the screws will point upward.
+    
+- Insert one F623ZZ bearing with the flange down, next an M3 washer and finally another bearing but now with the flange up) into each one of the four screws of the top square carriage.
+    
+- Use a post-it or a similar-size piece of paper to press it against each one of the screws protruding so paper is perforated and is pressing against the top of the bearings. The goal is for this paper to hold them in place while we put the whole thing upside-down preventing the bearings to fall off.
+    
+- Place the top carriage over the bottom carriage so the smooth rods on the top form a right angle with the bottom smooth rods.
+    
+- Screw lightly each one of the four M3 screws and once you notice each one is attached to the nut in the bottom tear the post-it paper apart. Next finish tightening the screws and add the other 4 M3 30mm screws that do not have a bearing but add strength to the union of top and bottom parts of the carriage.
+    
+- Place one GT2 pulley on each stepper motor but do not tighten the grub bolt yet.
+    
+- Place a pair of F623ZZ bearings with an M3 washer in between fixed with an M3 screw in the end Y part that will support the servo part.
+    
+- Insert the belt all along its path (the crossings of the central carriage are a bit tricky). And once pulleys are aligned with the belt tighten the grub screws on each one.
+
+- Use two M3 screws and two nuts to attach the servo support part and later add the microsevo using the two screws that come with it.
+
+- Make sure the vertical two holes in the servo support part are 4mm diameter and that the carbon fiber tubes can be inserted into them (if not, drill the holes with a 4mm drill bit). Insert both tubes from the top but only mid way. And next insert from the top the vertical carriage (the one that looks like a smiling face). Gently push it down till you can insert the remaining half of the carbon fiber tubes so they are inserted into the bottom holes of this carriage.
+
+- Using a couple of M3 screws and nuts fix the pen-holder part to the vertical carriage.
+
+- Push the Arduino holder into the protruding smooth rods on one of the stepper motor holders. Use a couple of M3 screws to attach the Arduino board to the plastic holder.
+	
+	
+
+
+Bill of materials
+
+- 4 8mm smooth rods (two 400mm-long and two 320mm-long)
+- 8 LM8UU
+- 2 20-tooth GT2 pulleys
+- 10 F623ZZ bearings
+- 1 GT2 belt ( 1.4 meters long )
+- 2 M10 threaded rods (400mm-long each)
+- 8 M10 nuts
+- 8 30mm M3 screws with nuts
+- 8 6mm M3 screws
+- 4 16mm M3 screws with nuts
+- 4 M3 washers
+- 2 4mm OD, 100mm-long carbon fiber tubes
+- 2 15mm M3 screws
+
+
+Electronics
+- 2 nema 17 steppers (*)
+- 1 micro servo SG90 (plus a 250mm cable extender)
+- 1 Arduino UNO
+- 1 CNCshield
+- 2 Pololu stepsticks
+- 1 12V 2A power supply
+- 1 USB cable

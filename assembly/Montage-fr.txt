@@ -1,0 +1,69 @@
+Montage
+
+Je recommande la séquence de construction suivante :
+
+- Glissez deux LM8UU dans chacune des deux tiges lisses les plus longues.
+
+- Glissez les tiges dans les pièces du moteur, une de chaque côté (laissez 20 mm supplémentaires de tiges dans l'un des deux côtés dépassant de la pièce vers le moteur, cela servira plus tard pour supporter le support Arduino).
+
+- Insérez les tiges filetées M10 de manière à ce que chacune supporte un côté des pièces de support du moteur à l'aide d'un écrou de chaque côté (total 8 écrous M10).
+
+- Montez les moteurs pas à pas Nema 17 sur les deux grosses pièces en plastique à l'aide de 8 vis M3 (8 mm de long).
+
+- Insérez 8 écrous M3 dans les porte-écrous du chariot carré inférieur et placez-le en supportant les roulements linéaires LM8UU que vous avez insérés dans les longues tiges lisses déjà installées.
+  
+- Prenez les deux tiges lisses restantes (les plus courtes) et insérez deux roulements linéaires LM8UU sur chacune d'elles.
+
+- Insérez les deux pièces d'extrémité à chaque extrémité de la paire de tiges lisses. Vous avez maintenant terminé le deuxième axe.
+
+- Insérez le chariot carré supérieur sur les 4 roulements linéaires des tiges lisses les plus courtes.
+
+- Insérez 4 vis M30 de 30 mm de long dans les 4 trous centraux du chariot carré supérieur, retournez le chariot avec précaution afin que la tête des vis repose sur la table et que les vis pointent vers le haut.
+
+- Insérez un roulement F623ZZ avec la bride vers le bas, ensuite une rondelle M3 et enfin un autre roulement mais maintenant avec la bride vers le haut) dans chacune des quatre vis du chariot carré supérieur.
+
+- Utilisez un post-it ou un morceau de papier de taille similaire pour le presser contre chacune des vis qui dépassent afin que le papier soit perforé et appuie contre le haut des roulements. Le but est que ce papier les maintienne en place pendant que nous renversons le tout pour éviter que les roulements ne tombent.
+
+- Placez le chariot supérieur sur le chariot inférieur de manière à ce que les tiges lisses du haut forment un angle droit avec les tiges lisses du bas.
+
+- Vissez légèrement chacune des quatre vis M3 et une fois que vous remarquez que chacune est fixée à l'écrou en bas, déchirez le papier post-it. Terminez ensuite de serrer les vis et ajoutez les 4 autres vis M3 de 30 mm qui n'ont pas de roulement mais ajoutent de la solidité à l'union des parties supérieure et inférieure du chariot.
+
+- Placez une poulie GT2 sur chaque moteur pas à pas mais ne serrez pas encore le boulon sans tête.
+
+- Placez une paire de roulements F623ZZ avec une rondelle M3 entre les deux fixée avec une vis M3 dans la partie d'extrémité Y qui supportera la partie servo.
+
+- Insérez la courroie tout au long de son parcours (les traversées du chariot central sont un peu délicates). Et une fois que les poulies sont alignées avec la courroie, serrez les vis sans tête sur chacune d'elles.
+
+- Utilisez deux vis M3 et deux écrous pour fixer la pièce de support du servo et ajoutez ensuite le microsevo à l'aide des deux vis qui l'accompagnent.
+
+- Assurez-vous que les deux trous verticaux de la pièce support du servo ont un diamètre de 4 mm et que les tubes en fibre de carbone peuvent y être insérés (sinon, percez les trous avec un foret de 4 mm). Insérez les deux tubes par le haut mais seulement à mi-chemin. Et ensuite insérez par le haut le chariot vertical (celui qui ressemble à un visage souriant). Poussez-le doucement vers le bas jusqu'à ce que vous puissiez insérer la moitié restante des tubes en fibre de carbone afin qu'ils soient insérés dans les trous inférieurs de ce chariot.
+
+- À l'aide de quelques vis et écrous M3, fixez la partie porte-stylo au chariot vertical.
+
+- Poussez le support Arduino dans les tiges lisses saillantes de l'un des supports de moteur pas à pas. Utilisez quelques vis M3 pour fixer la carte Arduino au support en plastique.
+
+
+BOM
+
+- 4 tiges lisses de 8 mm (deux de 400 mm de long et deux de 320 mm de long)
+- 8 LM8UU
+- 2 poulies GT2 20 dents
+- 10 roulements F623ZZ
+- 1 ceinture GT2 ( 1,4 mètres de long )
+- 2 tiges filetées M10 (400 mm de long chacune)
+- 8 écrous M10
+- 8 vis M3 de 30 mm avec écrous
+- 8 vis M3 de 6 mm
+- 4 vis M3 de 16 mm avec écrous
+- 4 rondelles M3
+- 2 tubes en fibre de carbone de 4 mm de diamètre extérieur et de 100 mm de long
+- 2 vis M3 de 15 mm
+
+Électronique:
+- 2 steppers nema 17 (*)
+- 1 micro servo SG90 (plus une rallonge de câble de 250 mm)
+- 1 Arduino UNO
+- 1 bouclier CNC
+- 2 Mezzanine Pololu
+- 1 alimentation 12V 2A
+- 1 câble USB
