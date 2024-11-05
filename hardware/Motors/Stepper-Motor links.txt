@@ -1,0 +1,4 @@
+Half/Full step:
+https://sea.omega.com/th/prodinfo/stepper_motors.html
+https://www.automate.org/motion-control/case-studies/what-is-the-difference-between-full-stepping-the-half-stepping-and-the-micro-drive
+Arduno: half/Full step: https://www.youtube.com/watch?v=cYAPK7xoISE
