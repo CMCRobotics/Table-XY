@@ -1,0 +1,11 @@
+Universal GCode sender: 
+		https://universalgcodesender.com/
+		https://github.com/winder/Universal-G-Code-Sender?tab=readme-ov-file
+		
+		UGS Platform (Rich): Run directly th exe in d:\Hobby\GRBL\ugsplatform-win\bin\
+		UGS Clasic: Simple for sending direct commands to the Controller. Requires JAVA 61
+		
+GRBL: https://github.com/grbl/grbl/tree/master/grbl
+      https://github.com/gnea/grbl
+	  
+Pilot CNC via GCode with Arduino: https://letmeknow.fr/fr/blog/110-tuto-piloter-une-cnc-avec-arduino-et-grbl
