@@ -1,2 +1,6 @@
 https://protosupplies.com/product/servo-motor-micro-sg92r/
 https://forum.phpoc.com/articles/tutorials/347-servo-motor-how-to-control-servo-motor
+
+https://docs.arduino.cc/learn/electronics/servo-motors/
+Servo Hardware: https://en.wikipedia.org/wiki/Servo_(radio_control)
+
