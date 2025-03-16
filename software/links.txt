@@ -7,5 +7,7 @@ Universal GCode sender:
 		
 GRBL: https://github.com/grbl/grbl/tree/master/grbl
       https://github.com/gnea/grbl
-	  
+
+GRBL with servo: 	https://github.com/misan/grbl-servo	  
+
 Pilot CNC via GCode with Arduino: https://letmeknow.fr/fr/blog/110-tuto-piloter-une-cnc-avec-arduino-et-grbl
