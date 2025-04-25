@@ -1,0 +1,16 @@
+Some tips to be checked:
+
+- Invert Servo control
+spindle_control.c
+	//#define RC_SERVO_INVERT     1     // Uncomment to invert servo direction
+		
+- General
+config.h
+	// A simple software debouncing feature for hard limit switches. ... but it WILL NOT fix issues with electrical interference on the signal cables from external sources ....
+	// #define ENABLE_SOFTWARE_DEBOUNCE // Default disabled. Uncomment to enable.
+	
+	// If your machine has two limits switches wired in parallel to one axis, ... enable this feature. Since the two switches are sharing a single pin ...
+	// #define LIMITS_TWO_SWITCHES_ON_AXES
+	
+	// Inverts pin logic of the control command pins. This essentially means when this option is enabled you can use normally-closed switches, rather than the default normally-open switches ....
+	// #define INVERT_CONTROL_PIN // Default disabled. Uncomment to enable.	
