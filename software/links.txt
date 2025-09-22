@@ -16,4 +16,15 @@ GRBL with servo: 	https://github.com/misan/grbl-servo
 Pilot CNC via GCode with Arduino: https://letmeknow.fr/fr/blog/110-tuto-piloter-une-cnc-avec-arduino-et-grbl
 
 
-Description files: https://www.instructables.com/4xiDraw/General 
+Description files: https://www.instructables.com/4xiDraw/General
+
+Documents on M et G Code:
+	http://fr.insta3dp.com/info/3d-printer-g-code-commands-full-list-tutori-79272752.html
+
+	https://gcodetutor.com/cnc-machine-training/cnc-g-codes.html
+
+	https://linuxcnc.org/docs/2.8/html/gcode/gcode_fr.htmlhttps://linuxcnc.org/docs/2.8/html/gcode/gcode_fr.html
+
+	https://www.cnccookbook.com/cnc-lathe-gcode-mcode-reference-list-turning/
+
+	https://machiningconceptserie.com/m-code-cheat-sheet/
