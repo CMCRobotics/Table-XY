@@ -23,7 +23,7 @@ Documents on M et G Code:
 
 	https://gcodetutor.com/cnc-machine-training/cnc-g-codes.html
 
-	https://linuxcnc.org/docs/2.8/html/gcode/gcode_fr.htmlhttps://linuxcnc.org/docs/2.8/html/gcode/gcode_fr.html
+	https://linuxcnc.org/docs/2.8/html/gcode/gcode_fr.html
 
 	https://www.cnccookbook.com/cnc-lathe-gcode-mcode-reference-list-turning/
 
