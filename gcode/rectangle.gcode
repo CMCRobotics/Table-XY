@@ -12,10 +12,10 @@ M3 S1000
 
 ; Create rectangle: YX: 20*50
 G1 Y20 F25
-G1 X50
+G1 X25
 
 G1 Y-20
-G1 X-50
+G1 X-25
 
 ; Pencil Down
 M5
