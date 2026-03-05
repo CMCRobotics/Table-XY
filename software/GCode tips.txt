@@ -1,0 +1,13 @@
+Gcode Tips:
+
+- () :
+	Comments
+
+-  “F” Mean:
+	Letter F specifies the feed rate — the speed at which the cutting tool or machine moves along its programmed path. The feed rate is measured in:
+
+    - Inches per minute (IPM) when using G20 (inch mode)
+    - Millimeters per minute (mm/min) when using G21 (metric mode)
+
+
+
