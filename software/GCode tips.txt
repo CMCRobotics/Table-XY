@@ -10,4 +10,8 @@ Gcode Tips:
     - Millimeters per minute (mm/min) when using G21 (metric mode)
 
 
+- Pencil Down, S being rotation speed
+M5 S1000
 
+- Pencil Up
+M3
