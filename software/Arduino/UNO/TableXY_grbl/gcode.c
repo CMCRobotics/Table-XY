@@ -24,11 +24,11 @@ Modified by Jose Luis Gomez Costa
 Modified: a command Zdddd is converted into:
 	- M03 behaviour: if d > 0 (Pencil up)
 	- M05 behaviour: if d <= 0 (Pencil down)
-	- Z command is discarded
+	- Z command, and all that includes it are discarded. If any present fails with STATUS_GCODE_UNSUPPORTED_COMMAND
 
 Version Date        Author  Description
-1.0     21/03/2026  JLGC    Initial Version
-
+0.1     21/03/2026  JLGC    Initial Version
+0.11    22/03/2026  JLGC    Eliminated all Z related commands, if present -> STATUS_GCODE_UNSUPPORTED_COMMAND
 
 **********************/
 
@@ -221,8 +221,11 @@ uint8_t gc_execute_line(char *line)
             word_bit = MODAL_GROUP_G2; 
             switch(int_value) {
               case 17: gc_block.modal.plane_select = PLANE_SELECT_XY; break;
+              /*******************************************************
+              Z Axis is not used
               case 18: gc_block.modal.plane_select = PLANE_SELECT_ZX; break;
               case 19: gc_block.modal.plane_select = PLANE_SELECT_YZ; break;
+              *******************************************************/              
             }
             break;
           case 90: case 91: 
@@ -352,7 +355,10 @@ uint8_t gc_execute_line(char *line)
           // case 'H': // Not supported
           case 'I': word_bit = WORD_I; gc_block.values.ijk[X_AXIS] = value; ijk_words |= (1<<X_AXIS); break;
           case 'J': word_bit = WORD_J; gc_block.values.ijk[Y_AXIS] = value; ijk_words |= (1<<Y_AXIS); break;
-          case 'K': word_bit = WORD_K; gc_block.values.ijk[Z_AXIS] = value; ijk_words |= (1<<Z_AXIS); break;
+
+          // Eliminated
+          // case 'K': word_bit = WORD_K; gc_block.values.ijk[Z_AXIS] = value; ijk_words |= (1<<Z_AXIS); break;
+          
           case 'L': word_bit = WORD_L; gc_block.values.l = int_value; break;
           case 'N': word_bit = WORD_N; gc_block.values.n = trunc(value); break;
           case 'P': word_bit = WORD_P; gc_block.values.p = value; break;
@@ -498,7 +504,9 @@ uint8_t gc_execute_line(char *line)
     bit_false(value_words,bit(WORD_P));
   }
   
-  // [11. Set active plane ]: N/A
+  // [11. Set active plane ]: Only XY is accepted
+  /**************************************************
+  Original: 
   switch (gc_block.modal.plane_select) {
     case PLANE_SELECT_XY:
       axis_0 = X_AXIS;
@@ -515,7 +523,16 @@ uint8_t gc_execute_line(char *line)
       axis_1 = Z_AXIS;
       axis_linear = X_AXIS;
   }   
-            
+  **************************************************/
+  switch (gc_block.modal.plane_select) {
+    default: 
+      // PLANE_SELECT_XY:
+      axis_0 = X_AXIS;
+      axis_1 = Y_AXIS;
+      axis_linear = Z_AXIS;
+      break;
+  } 
+
   // [12. Set length units ]: N/A
   // Pre-convert XYZ coordinate values to millimeters, if applicable.
   uint8_t idx;

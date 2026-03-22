@@ -22,8 +22,8 @@
 #ifndef gcode_h
 #define gcode_h
 
-#define GRBL_PENCIL_VERSION "1.0"
-#define GRBL_PENCIL_BUILD "20260321"
+#define GRBL_PENCIL_VERSION "0.11"
+#define GRBL_PENCIL_BUILD "20260322"
 
 //--------------------------------------------------------------------------------------------------------
 // Conversion of Z plabne movement to M03 / M05 Pendil Up or Down

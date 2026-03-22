@@ -144,11 +144,13 @@ void report_feedback_message(uint8_t message_code)
   printPgmString(PSTR("]\r\n"));
 }
 
-
 // Welcome message
 void report_init_message()
 {
-  printPgmString(PSTR("\r\nGrbl " GRBL_VERSION " ['$' for help]\r\n"));
+  printPgmString(PSTR("\r\nGrbl        " GRBL_VERSION));
+  printPgmString(PSTR("\r\nGrbl Pencil " GRBL_PENCIL_VERSION));
+  printPgmString(PSTR("\r\n['$' for help]\r\n"));
+
 }
 
 // Grbl help message
@@ -398,7 +400,8 @@ void report_startup_line(uint8_t n, char *line)
 // Prints build info line
 void report_build_info(char *line)
 {
-  printPgmString(PSTR("[" GRBL_VERSION "." GRBL_VERSION_BUILD ":"));
+  printPgmString(PSTR("nGrbl        [" GRBL_VERSION "." GRBL_VERSION_BUILD ":"));
+  printPgmString(PSTR("nGrbl Pencil [" GRBL_PENCIL_VERSION "." GRBL_PENCIL_BUILD ":"));  
   printString(line);
   printPgmString(PSTR("]\r\n"));
 }
