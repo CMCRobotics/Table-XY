@@ -1,13 +1,12 @@
 -------------------------------------------------------------------
 
-Program modified by Jose Luis Gomez Costa:
+Program modified by Jose Luis Gomez Costa, for converting Zaxis commands into Pencil up/down commands
 
-gcode.c/h
-
-Modified: a command Zdddd is converted into:
-	- M03 behaviour: if d > 0 (Pencil up)
-	- M05 behaviour: if d <= 0 (Pencil down)
-	- Z command is discarded
+	When Z command is detected in a Command line:
+		- Mxx command is executed
+		- then the original command line is executed unmodified.
+		
+	This will imply always processing the Z axis, but as there is no hardware it will not interfere with the actual behaviour with a Pencil.
 
 -------------------------------------------------------------------
 # grbl-servo Original
