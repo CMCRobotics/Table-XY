@@ -26,10 +26,6 @@ Modified: a command Zdddd is converted into:
 	- M05 behaviour: if d <= 0 (Pencil down)
 	- Z command, and all that includes it are discarded. If any present fails with STATUS_GCODE_UNSUPPORTED_COMMAND
 
-Version Date        Author  Description
-0.1     21/03/2026  JLGC    Initial Version
-0.11    22/03/2026  JLGC    Eliminated all Z related commands, if present -> STATUS_GCODE_UNSUPPORTED_COMMAND
-
 **********************/
 
 #include "grbl.h"

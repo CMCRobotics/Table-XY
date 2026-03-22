@@ -1,0 +1,23 @@
+Detail of versions
+
+----------------------------------------
+Version: 0.1
+
+Date:	21/03/2026
+Author: Jose Luis Gomez Costa
+
+	Initial Version
+	
+----------------------------------------
+Version: 0.11
+
+Date:	21/03/2026
+Author: Jose Luis Gomez Costa
+
+	gcode.c/h
+		Eliminated all Z related commands, if present -> STATUS_GCODE_UNSUPPORTED_COMMAND
+	
+	report.c
+		Added Pencil up/down Version indications
+	
+
