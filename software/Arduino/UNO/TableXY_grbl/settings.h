@@ -61,7 +61,7 @@
 #define EEPROM_ADDR_PARAMETERS     512U
 #define EEPROM_ADDR_STARTUP_BLOCK  768U
 #define EEPROM_ADDR_BUILD_INFO     942U
-#define EEPROM_ADDR_BUILD_INFO_PENCIL     962U
+#define EEPROM_ADDR_BUILD_PENCIL_INFO     962U
 
 // Define EEPROM address indexing for coordinate parameters
 #define N_COORDINATE_SYSTEM 6  // Number of supported work coordinate systems (from index 1)

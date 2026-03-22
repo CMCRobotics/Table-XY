@@ -120,7 +120,5 @@ void spindle_run(uint8_t direction, float rpm)
     #endif  
   }
 }
-
-
-void spindle_set_state(uint8_t state, float rpm){
+spindle_set_state(uint8_t state, float rpm){
 }

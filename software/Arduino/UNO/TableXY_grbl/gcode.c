@@ -19,15 +19,6 @@
   along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/********************
-Modified by Jose Luis Gomez Costa
-Modified: a command Zdddd is converted into:
-	- M03 behaviour: if d > 0 (Pencil up)
-	- M05 behaviour: if d <= 0 (Pencil down)
-	- Z command, and all that includes it are discarded. If any present fails with STATUS_GCODE_UNSUPPORTED_COMMAND
-
-**********************/
-
 #include "grbl.h"
 
 // NOTE: Max line number is defined by the g-code standard to be 99999. It seems to be an
@@ -217,11 +208,8 @@ uint8_t gc_execute_line(char *line)
             word_bit = MODAL_GROUP_G2; 
             switch(int_value) {
               case 17: gc_block.modal.plane_select = PLANE_SELECT_XY; break;
-              /*******************************************************
-              Z Axis is not used
               case 18: gc_block.modal.plane_select = PLANE_SELECT_ZX; break;
               case 19: gc_block.modal.plane_select = PLANE_SELECT_YZ; break;
-              *******************************************************/              
             }
             break;
           case 90: case 91: 
@@ -301,9 +289,6 @@ uint8_t gc_execute_line(char *line)
           #ifndef USE_SPINDLE_DIR_AS_ENABLE_PIN
             case 4: 
           #endif
-
-          // M03 or M05 action
-
           case 3: case 5:
             word_bit = MODAL_GROUP_M7; 
             switch(int_value) {
@@ -351,10 +336,7 @@ uint8_t gc_execute_line(char *line)
           // case 'H': // Not supported
           case 'I': word_bit = WORD_I; gc_block.values.ijk[X_AXIS] = value; ijk_words |= (1<<X_AXIS); break;
           case 'J': word_bit = WORD_J; gc_block.values.ijk[Y_AXIS] = value; ijk_words |= (1<<Y_AXIS); break;
-
-          // Eliminated
-          // case 'K': word_bit = WORD_K; gc_block.values.ijk[Z_AXIS] = value; ijk_words |= (1<<Z_AXIS); break;
-          
+          case 'K': word_bit = WORD_K; gc_block.values.ijk[Z_AXIS] = value; ijk_words |= (1<<Z_AXIS); break;
           case 'L': word_bit = WORD_L; gc_block.values.l = int_value; break;
           case 'N': word_bit = WORD_N; gc_block.values.n = trunc(value); break;
           case 'P': word_bit = WORD_P; gc_block.values.p = value; break;
@@ -365,22 +347,7 @@ uint8_t gc_execute_line(char *line)
           case 'T': word_bit = WORD_T; break; // gc.values.t = int_value;
           case 'X': word_bit = WORD_X; gc_block.values.xyz[X_AXIS] = value; axis_words |= (1<<X_AXIS); break;
           case 'Y': word_bit = WORD_Y; gc_block.values.xyz[Y_AXIS] = value; axis_words |= (1<<Y_AXIS); break;
-
-          // Z Axis action
-          case 'Z': 
-            // Original: word_bit = WORD_Z; gc_block.values.xyz[Z_AXIS] = value; axis_words |= (1<<Z_AXIS);
-            command_words |= bit(MODAL_GROUP_M7);
-
-            if (value > Z_AXIS_LIMIT) {
-              // It is Safe zone -> Pencil up
-              gc_block.modal.spindle = PENCIL_UP;
-            }
-            else{
-              // It is work Zone: -> Pencil down
-              gc_block.modal.spindle = PENCIL_DOWN;
-            }
-            break;
-
+          case 'Z': word_bit = WORD_Z; gc_block.values.xyz[Z_AXIS] = value; axis_words |= (1<<Z_AXIS); break;
           default: FAIL(STATUS_GCODE_UNSUPPORTED_COMMAND);
         } 
         
@@ -499,9 +466,7 @@ uint8_t gc_execute_line(char *line)
     bit_false(value_words,bit(WORD_P));
   }
   
-  // [11. Set active plane ]: Only XY is accepted
-  /**************************************************
-  Original: 
+  // [11. Set active plane ]: N/A
   switch (gc_block.modal.plane_select) {
     case PLANE_SELECT_XY:
       axis_0 = X_AXIS;
@@ -518,16 +483,7 @@ uint8_t gc_execute_line(char *line)
       axis_1 = Z_AXIS;
       axis_linear = X_AXIS;
   }   
-  **************************************************/
-  switch (gc_block.modal.plane_select) {
-    default: 
-      // PLANE_SELECT_XY:
-      axis_0 = X_AXIS;
-      axis_1 = Y_AXIS;
-      axis_linear = Z_AXIS;
-      break;
-  } 
-
+            
   // [12. Set length units ]: N/A
   // Pre-convert XYZ coordinate values to millimeters, if applicable.
   uint8_t idx;
@@ -870,22 +826,7 @@ uint8_t gc_execute_line(char *line)
   // [0. Non-specific error-checks]: Complete unused value words check, i.e. IJK used when in arc
   // radius mode, or axis words that aren't used in the block.  
   bit_false(value_words,(bit(WORD_N)|bit(WORD_F)|bit(WORD_S)|bit(WORD_T))); // Remove single-meaning value words. 
-  if (axis_command) { bit_false(value_words,(bit(WORD_X)|bit(WORD_Y)|bit(WORD_Z))); } // Remove axis words.
-
-  // Strange tweak
-  // comented out, otherwise FAIL status appears wen executing: G00 Zxxxx command
-  // reason: Bit belonging to Z is set ???
-  //--- Test
-  printString("\r\nvalue_words: ");
-  print_unsigned_int16(value_words,2,16);
-  printString("\r\n");
-
-  printString("\r\naxis_command: ");
-  print_unsigned_int8(axis_command,2,8);
-  printString("\r\n");
-
-  //--- Test
-
+  if (axis_command) { bit_false(value_words,(bit(WORD_X)|bit(WORD_Y)|bit(WORD_Z))); } // Remove axis words. 
   if (value_words) { FAIL(STATUS_GCODE_UNUSED_WORDS); } // [Unused words]
 
    

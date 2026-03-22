@@ -22,22 +22,6 @@
 #ifndef gcode_h
 #define gcode_h
 
-#define GRBL_PENCIL_VERSION "0.22"
-
-#define GRBL_BUILD_PENCIL_DAY   "22"    //compilation Day
-#define GRBL_BUILD_PENCIL_MONTH "03"    //compilation Month
-#define GRBL_BUILD_PENCIL_YEAR "2026"   //compilation Year
-#define GRBL_BUILD_PENCIL GRBL_BUILD_PENCIL_YEAR GRBL_BUILD_PENCIL_MONTH GRBL_BUILD_PENCIL_DAY    // It is YearMonthDay
-
-//--------------------------------------------------------------------------------------------------------
-// Conversion of Z plane movement to M03 / M05 Pencil Up or Down
-
-#define Z_AXIS_LIMIT  0     // Limit of Zaxis movement: higher it is Pencil up, lower it is Pencil down
-#define PENCIL_UP     SPINDLE_DISABLE   // Action for setting pencil UP
-#define PENCIL_DOWN   SPINDLE_ENABLE_CW   // Action for setting pencil UP
-
-//--------------------------------------------------------------------------------------------------------
-
 
 // Define modal group internal numbers for checking multiple command violations and tracking the 
 // type of command that is called in the block. A modal group is a group of g-code commands that are

@@ -40,7 +40,7 @@ void settings_store_build_info(char *line)
 
 void settings_store_build_pencil_info(char *line)
 {
-  memcpy_to_eeprom_with_checksum(EEPROM_ADDR_BUILD_INFO_PENCIL,(char*)line, LINE_BUFFER_SIZE);
+  memcpy_to_eeprom_with_checksum(EEPROM_ADDR_BUILD_PENCIL_INFO,(char*)line, LINE_BUFFER_SIZE);
 }
 
 
@@ -148,7 +148,7 @@ uint8_t settings_read_build_info(char *line)
 
 uint8_t settings_read_build_pencil_info(char *line)
 {
-  if (!(memcpy_from_eeprom_with_checksum((char*)line, EEPROM_ADDR_BUILD_INFO_PENCIL, LINE_BUFFER_SIZE))) {
+  if (!(memcpy_from_eeprom_with_checksum((char*)line, EEPROM_ADDR_BUILD_PENCIL_INFO, LINE_BUFFER_SIZE))) {
     // Reset line with default value
     line[0] = 0; // Empty line
     settings_store_build_pencil_info(line);
