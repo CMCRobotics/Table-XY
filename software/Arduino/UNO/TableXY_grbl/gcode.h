@@ -22,11 +22,15 @@
 #ifndef gcode_h
 #define gcode_h
 
-#define GRBL_PENCIL_VERSION "0.11"
-#define GRBL_PENCIL_BUILD "20260322"
+#define GRBL_PENCIL_VERSION "0.2"
+
+#define GRBL_BUILD_PENCIL_DAY   "22"    //compilation Day
+#define GRBL_BUILD_PENCIL_MONTH "03"    //compilation Month
+#define GRBL_BUILD_PENCIL_YEAR "2026"   //compilation Year
+#define GRBL_BUILD_PENCIL GRBL_BUILD_PENCIL_YEAR GRBL_BUILD_PENCIL_MONTH GRBL_BUILD_PENCIL_DAY    // It is YearMonthDay
 
 //--------------------------------------------------------------------------------------------------------
-// Conversion of Z plabne movement to M03 / M05 Pendil Up or Down
+// Conversion of Z plane movement to M03 / M05 Pencil Up or Down
 
 #define Z_AXIS_LIMIT  0     // Limit of Zaxis movement: higher it is Pencil up, lower it is Pencil down
 #define PENCIL_UP     SPINDLE_DISABLE   // Action for setting pencil UP

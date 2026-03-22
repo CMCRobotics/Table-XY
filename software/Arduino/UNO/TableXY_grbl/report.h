@@ -109,5 +109,6 @@ void report_startup_line(uint8_t n, char *line);
 
 // Prints build info and user info
 void report_build_info(char *line);
+void report_build_pencil_info(char *line);
 
 #endif

@@ -38,6 +38,11 @@ void settings_store_build_info(char *line)
   memcpy_to_eeprom_with_checksum(EEPROM_ADDR_BUILD_INFO,(char*)line, LINE_BUFFER_SIZE);
 }
 
+void settings_store_build_pencil_info(char *line)
+{
+  memcpy_to_eeprom_with_checksum(EEPROM_ADDR_BUILD_INFO_PENCIL,(char*)line, LINE_BUFFER_SIZE);
+}
+
 
 // Method to store coord data parameters into EEPROM
 void settings_write_coord_data(uint8_t coord_select, float *coord_data)
@@ -141,6 +146,16 @@ uint8_t settings_read_build_info(char *line)
   return(true);
 }
 
+uint8_t settings_read_build_pencil_info(char *line)
+{
+  if (!(memcpy_from_eeprom_with_checksum((char*)line, EEPROM_ADDR_BUILD_INFO_PENCIL, LINE_BUFFER_SIZE))) {
+    // Reset line with default value
+    line[0] = 0; // Empty line
+    settings_store_build_pencil_info(line);
+    return(false);
+  }
+  return(true);
+}
 
 // Read selected coordinate data from EEPROM. Updates pointed coord_data value.
 uint8_t settings_read_coord_data(uint8_t coord_select, float *coord_data)

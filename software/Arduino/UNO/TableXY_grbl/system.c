@@ -188,6 +188,7 @@ uint8_t system_execute_line(char *line)
             }
           } else { return(STATUS_SETTING_DISABLED); }
           break;
+          
         case 'I' : // Print or store build info. [IDLE/ALARM]
           if ( line[++char_counter] == 0 ) { 
             settings_read_build_info(line);
@@ -200,7 +201,23 @@ uint8_t system_execute_line(char *line)
             } while (line[char_counter++] != 0);
             settings_store_build_info(line);
           }
+          break;
+
+        case 'P' : // Print or store Pencil build info. [IDLE/ALARM]
+          if ( line[++char_counter] == 0 ) { 
+            settings_read_build_pencil_info(line);
+            report_build_pencil_info(line);
+          } else { // Store startup line [IDLE/ALARM]
+            if(line[char_counter++] != '=') { return(STATUS_INVALID_STATEMENT); }
+            helper_var = char_counter; // Set helper variable as counter to start of user info line.
+            do {
+              line[char_counter-helper_var] = line[char_counter];
+            } while (line[char_counter++] != 0);
+            settings_store_build_pencil_info(line);
+          }
           break; 
+
+
         case 'R' : // Restore defaults [IDLE/ALARM]
           if (line[++char_counter] != 'S') { return(STATUS_INVALID_STATEMENT); }
           if (line[++char_counter] != 'T') { return(STATUS_INVALID_STATEMENT); }

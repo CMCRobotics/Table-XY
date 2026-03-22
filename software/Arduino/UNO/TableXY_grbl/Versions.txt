@@ -19,5 +19,22 @@ Author: Jose Luis Gomez Costa
 	
 	report.c
 		Added Pencil up/down Version indications
-	
+
+----------------------------------------
+Version: 0.2
+
+Date:	21/03/2026
+Author: Jose Luis Gomez Costa
+
+	gcode.c/h
+		Eliminated all Z related commands, if present -> STATUS_GCODE_UNSUPPORTED_COMMAND
+		Strange tweak to be done:
+			// comented out, otherwise FAIL status appears when executing: G00 Zxxxx command
+			// if (value_words) { FAIL(STATUS_GCODE_UNUSED_WORDS); } // [Unused words]
+  
+		
+	report.c
+		Added Pencil up/down Version indications
+		Added Menu: $P: displays Pencil Build information
+		
 
