@@ -369,7 +369,7 @@ uint8_t gc_execute_line(char *line)
           // Z Axis action
           case 'Z': 
             // Original: word_bit = WORD_Z; gc_block.values.xyz[Z_AXIS] = value; axis_words |= (1<<Z_AXIS);
-            word_bit = MODAL_GROUP_M7;
+            command_words |= bit(MODAL_GROUP_M7);
 
             if (value > Z_AXIS_LIMIT) {
               // It is Safe zone -> Pencil up
@@ -379,7 +379,6 @@ uint8_t gc_execute_line(char *line)
               // It is work Zone: -> Pencil down
               gc_block.modal.spindle = PENCIL_DOWN;
             }
-
             break;
 
           default: FAIL(STATUS_GCODE_UNSUPPORTED_COMMAND);
@@ -873,8 +872,21 @@ uint8_t gc_execute_line(char *line)
   bit_false(value_words,(bit(WORD_N)|bit(WORD_F)|bit(WORD_S)|bit(WORD_T))); // Remove single-meaning value words. 
   if (axis_command) { bit_false(value_words,(bit(WORD_X)|bit(WORD_Y)|bit(WORD_Z))); } // Remove axis words.
 
+  // Strange tweak
   // comented out, otherwise FAIL status appears wen executing: G00 Zxxxx command
-  // if (value_words) { FAIL(STATUS_GCODE_UNUSED_WORDS); } // [Unused words]
+  // reason: Bit belonging to Z is set ???
+  //--- Test
+  printString("\r\nvalue_words: ");
+  print_unsigned_int16(value_words,2,16);
+  printString("\r\n");
+
+  printString("\r\naxis_command: ");
+  print_unsigned_int8(axis_command,2,8);
+  printString("\r\n");
+
+  //--- Test
+
+  if (value_words) { FAIL(STATUS_GCODE_UNUSED_WORDS); } // [Unused words]
 
    
   /* -------------------------------------------------------------------------------------

@@ -22,7 +22,7 @@
 #ifndef gcode_h
 #define gcode_h
 
-#define GRBL_PENCIL_VERSION "0.2"
+#define GRBL_PENCIL_VERSION "0.22"
 
 #define GRBL_BUILD_PENCIL_DAY   "22"    //compilation Day
 #define GRBL_BUILD_PENCIL_MONTH "03"    //compilation Month
