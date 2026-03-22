@@ -2,7 +2,7 @@ Universal GCode sender:
 		https://universalgcodesender.com/
 		https://github.com/winder/Universal-G-Code-Sender?tab=readme-ov-file
 		
-		UGS Platform (Rich): Run directly th exe in d:\Hobby\GRBL\ugsplatform-win\bin\
+		UGS Platform (Rich): Run directly the exe in d:\Hobby\GRBL\ugsplatform-win\bin\
 		UGS Clasic: Simple for sending direct commands to the Controller. Requires JAVA 61
 
 		
@@ -10,7 +10,7 @@ GRBL: https://github.com/grbl/grbl/tree/master/grbl
       https://github.com/gnea/grbl
 
 
-Display GCode work https://camotics.org/
+Display/Simulate GCode work https://camotics.org/
 
 GRBL with servo: 	https://github.com/misan/grbl-servo	  
 
