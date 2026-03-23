@@ -41,6 +41,7 @@
 // Define the Grbl system include files. NOTE: Do not alter organization.
 #include "config.h"
 #include "pencil.h"
+#include "pencil_version.h"
 #include "nuts_bolts.h"
 #include "settings.h"
 #include "system.h"

@@ -77,3 +77,20 @@ Author: Jose Luis Gomez Costa
 	pencil.h:
 		All definitions for the Pencil behaviour
 		
+----------------------------------------
+Version: 0.35
+
+Date:	23/03/2026
+Author: Jose Luis Gomez Costa
+
+	pencil.h:
+		Modified, Version data transferred to version_pencil.h
+
+	pencil.c:
+		All actions for adjusting pencil processing
+
+	grbl.h:
+		added new .h files
+
+	TODO!!!!!!: change old name of gcode.c 		uint8_t gc_execute_line(char *line) 
+	
