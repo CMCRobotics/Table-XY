@@ -21,6 +21,23 @@
 #ifndef grbl_h
 #define grbl_h
 
+// Serial Port test Messages
+
+// Comment for disabling Debug messages
+#define DebugEnabled Yes
+
+/**********************
+Example
+      #ifdef DebugEnabled
+        printString("Original: ");
+        printString(line);
+        printString("\r\nModified: ");        
+        printString(gline_pencil);
+        printString("\r\n");           
+      #endif
+****************************/
+
+
 // Grbl versioning system
 #define GRBL_VERSION "0.9i"
 #define GRBL_VERSION_BUILD "20150620"

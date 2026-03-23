@@ -94,3 +94,21 @@ Author: Jose Luis Gomez Costa
 
 	TODO!!!!!!: change old name of gcode.c 		uint8_t gc_execute_line(char *line) 
 	
+----------------------------------------
+Version: 0.36
+
+Date:	23/03/2026
+Author: Jose Luis Gomez Costa
+
+	gcode.c/.h:
+			Renamed uint8_t gc_execute_line(char *line) to uint8_t gc_execute_line_actual(char *line)
+
+----------------------------------------
+Version: 0.37
+
+Date:	23/03/2026
+Author: Jose Luis Gomez Costa
+
+	Added Test functions for transferring data via Serial Port
+	See grbl.h
+	

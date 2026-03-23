@@ -33,6 +33,6 @@
 #define PENCIL_DOWN   SPINDLE_ENABLE_CW   // Action for setting pencil UP
 
 #define ACTION_PENCIL_UP "M03"
-#define ACTION_PENCIL_UP "M05"
+#define ACTION_PENCIL_DOWN "M05"
 
 #endif

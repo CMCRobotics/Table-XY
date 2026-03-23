@@ -71,7 +71,10 @@ static uint8_t gc_check_same_position(float *pos_a, float *pos_b)
 // characters have been removed. In this function, all units and positions are converted and 
 // exported to grbl's internal functions in terms of (mm, mm/min) and absolute machine 
 // coordinates, respectively.
-uint8_t gc_execute_line(char *line) 
+
+// Original name: uint8_t gc_execute_line(char *line) 
+
+uint8_t gc_execute_line_actual(char *line)
 {
   /* -------------------------------------------------------------------------------------
      STEP 1: Initialize parser block struct and copy current g-code state modes. The parser

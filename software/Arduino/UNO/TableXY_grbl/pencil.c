@@ -69,7 +69,7 @@ uint8_t gc_execute_line(char *line)
       char_counter++;
       
       // Get the Floating point value, or error if not present
-      if (!read_float(line, &char_counter, &value)) { FAIL(STATUS_BAD_NUMBER_FORMAT); } // [Expected word value]
+      if (!read_float(line, &char_counter, &value)) { return(STATUS_BAD_NUMBER_FORMAT); } // [Expected word value]
 
       // Assumes it is Pencil Down
       gline_pencil = &gline_pencil_down;
@@ -79,8 +79,17 @@ uint8_t gc_execute_line(char *line)
         gline_pencil = &gline_pencil_up;
       }
       
+      #ifdef DebugEnabled
+        printString("Original: ");
+        printString(line);
+        printString("\r\nModified: ");        
+        printString(gline_pencil);
+        printString("\r\n");           
+      #endif
+
+
       // Move Pencil
-      execution_status = gc_execute_line(gline_pencil);
+      execution_status = gc_execute_line_actual(gline_pencil);
       if(execution_status != STATUS_OK) { return execution_status;}     
     }
 
@@ -89,7 +98,7 @@ uint8_t gc_execute_line(char *line)
   }
 
   // execute initial command line
-  execution_status = gc_execute_line(line);
+  execution_status = gc_execute_line_actual(line);
   if(execution_status != STATUS_OK) { return execution_status;} 
 
   // TODO: % to denote start of program.
