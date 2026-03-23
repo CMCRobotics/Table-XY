@@ -27,12 +27,12 @@
 //--------------------------------------------------------------------------------------------------------
 // Conversion of Z plane movement to M03 / M05 Pencil Up or Down
 
-#define Z_AXIS_LIMIT  1.00                // Limit of Zaxis movement: higher it is Pencil up, lower it is Pencil down
+#define Z_AXIS_LIMIT  1.0000               // Limit of Zaxis movement: higher it is Pencil up, lower it is Pencil down
 
 #define PENCIL_UP     SPINDLE_DISABLE     // Action for setting pencil UP
 #define PENCIL_DOWN   SPINDLE_ENABLE_CW   // Action for setting pencil UP
 
-#define ACTION_PENCIL_UP "M03"
-#define ACTION_PENCIL_DOWN "M05"
+#define ACTION_PENCIL_UP "M3"
+#define ACTION_PENCIL_DOWN "M5"
 
 #endif

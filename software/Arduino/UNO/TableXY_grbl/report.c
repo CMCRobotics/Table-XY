@@ -407,7 +407,7 @@ void report_build_info(char *line)
 // Prints Pencil build info line
 void report_build_pencil_info(char *line)
 {
-  printPgmString(PSTR("\r\nGrbl Pencil [" GRBL_PENCIL_VERSION "." GRBL_BUILD_PENCIL"]"));  
+  printPgmString(PSTR("Grbl Pencil [" GRBL_PENCIL_VERSION "." GRBL_BUILD_PENCIL"]"));  
   printString(line);
   printPgmString(PSTR("\r\n"));
 }

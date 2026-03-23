@@ -1,7 +1,4 @@
-/*
-  gcode.c - rs274/ngc parser.
-  Part of Grbl
-
+/***
   Copyright (c) 2011-2015 Sungeun K. Jeon
   Copyright (c) 2009-2011 Simen Svale Skogsrud
 
@@ -17,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License
   along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
-*/
+***/
 
 #include "grbl.h"
 
@@ -45,8 +42,8 @@ characters and signed floating point values (no whitespace). Comments and block 
 characters have been removed. 
 
 ******************************/
-char gline_pencil_up[] = ACTION_PENCIL_UP;
-char gline_pencil_down[] = ACTION_PENCIL_DOWN;
+char line_pencil_up[] = ACTION_PENCIL_UP;
+char line_pencil_down[] = ACTION_PENCIL_DOWN;
 
 uint8_t gc_execute_line(char *line) 
 {
@@ -54,7 +51,7 @@ uint8_t gc_execute_line(char *line)
   uint8_t char_counter = 0;  
   char letter;
   float value;
-  char *gline_pencil;
+  char *line_pencil;
 
   uint8_t execution_status;
 
@@ -72,24 +69,24 @@ uint8_t gc_execute_line(char *line)
       if (!read_float(line, &char_counter, &value)) { return(STATUS_BAD_NUMBER_FORMAT); } // [Expected word value]
 
       // Assumes it is Pencil Down
-      gline_pencil = &gline_pencil_down;
+      line_pencil = &line_pencil_down;
 
       if(value >= Z_AXIS_LIMIT){
         // It is Pencil Up
-        gline_pencil = &gline_pencil_up;
+        line_pencil = &line_pencil_up;
       }
       
       #ifdef DebugEnabled
-        printString("Original: ");
+        printString("Added: ");        
+        printString(line_pencil);      
+        printString(" - Original: ");
         printString(line);
-        printString("\r\nModified: ");        
-        printString(gline_pencil);
         printString("\r\n");           
       #endif
 
 
       // Move Pencil
-      execution_status = gc_execute_line_actual(gline_pencil);
+      execution_status = gc_execute_line_actual(line_pencil);
       if(execution_status != STATUS_OK) { return execution_status;}     
     }
 

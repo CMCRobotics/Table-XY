@@ -112,3 +112,30 @@ Author: Jose Luis Gomez Costa
 	Added Test functions for transferring data via Serial Port
 	See grbl.h
 	
+----------------------------------------
+Version: 0.371
+
+Date:	23/03/2026
+Author: Jose Luis Gomez Costa
+
+	pencil_version.h: Wrong date GRBL_BUILD_PENCIL_DAY
+
+----------------------------------------
+Version: 0.38
+
+Date:	23/03/2026
+Author: Jose Luis Gomez Costa
+
+	pencil.h: Modified Z_AXIS_LIMIT to 0.5
+
+----------------------------------------
+Version: 0.385
+
+Date:	23/03/2026
+Author: Jose Luis Gomez Costa
+
+	pencil.h:
+		Modified ACTION_PENCIL_UP "M3"
+		Modified ACTION_PENCIL_DOWN "M5"
+		Modified Z_AXIS_LIMIT  1.0000
+		
