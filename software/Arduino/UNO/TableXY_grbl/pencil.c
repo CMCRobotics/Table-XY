@@ -59,7 +59,6 @@ uint8_t gc_execute_line(char *line)
     
     // Import the next g-code word, expecting a letter followed by a value. 
     // Any possible error will be detected when executing the GCode command line
-    letter = line[char_counter];
     
     if(line[char_counter] == 'Z') { 
       //It is Zaxis movement
@@ -69,7 +68,7 @@ uint8_t gc_execute_line(char *line)
 
       line_pencil = &line_pencil_up;              // Assumes it is Pencil Up
 
-      if(line[char_counter] == '-')
+      if(line[char_counter] == '-'){
         // It is Pencil Down
         line_pencil = &line_pencil_down;
       }
