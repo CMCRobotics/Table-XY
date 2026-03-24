@@ -139,3 +139,17 @@ Author: Jose Luis Gomez Costa
 		Modified ACTION_PENCIL_DOWN "M5"
 		Modified Z_AXIS_LIMIT  1.0000
 		
+----------------------------------------
+Version: 0.400
+
+Date:	24/03/2026
+Author: Jose Luis Gomez Costa
+
+	pencil.c:
+		Simplifyed the detection of Z movement:
+			Z positive is Pencil up
+			Z negative is Pencil down
+			Only the sign is checked.
+
+	pencil.h:
+		Modified names ACTION_PENCIL_xx ->  GCODE_PENCIL_xx

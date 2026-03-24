@@ -29,9 +29,9 @@ Parses the Gcode line.
     1.0 Keep OriginalLine unmodified
     2.0 Command Line is parsed:	
       2.1 if no Z command is found, jump to 3.0
-      2.2 if Z command is found: Generate a Dummy CommandLine with the M03 or M05
+      2.2 if Z command is found: Generate a Dummy CommandLine with the M03 or M05.
+          Only sign is verifyed, not actual value
       2.3 Execute Dummy CommandLine
-      2.3.1 If error detected, jump in 4.0
     3.0 Execute OriginalLine
     4.0 Return with:
       detected error
@@ -42,15 +42,14 @@ characters and signed floating point values (no whitespace). Comments and block 
 characters have been removed. 
 
 ******************************/
-char line_pencil_up[] = ACTION_PENCIL_UP;
-char line_pencil_down[] = ACTION_PENCIL_DOWN;
+
+char line_pencil_up[] = GCODE_PENCIL_UP;
+char line_pencil_down[] = GCODE_PENCIL_DOWN;
 
 uint8_t gc_execute_line(char *line) 
 {
 
   uint8_t char_counter = 0;  
-  char letter;
-  float value;
   char *line_pencil;
 
   uint8_t execution_status;
@@ -58,22 +57,21 @@ uint8_t gc_execute_line(char *line)
 
   while (line[char_counter] != 0) { // Loop until no more g-code words in line.
     
-    // Import the next g-code word, expecting a letter followed by a value. Otherwise, error out.
+    // Import the next g-code word, expecting a letter followed by a value. 
+    // Any possible error will be detected when executing the GCode command line
     letter = line[char_counter];
     
-    if(letter == 'Z') { 
+    if(line[char_counter] == 'Z') { 
       //It is Zaxis movement
       char_counter++;
       
-      // Get the Floating point value, or error if not present
-      if (!read_float(line, &char_counter, &value)) { return(STATUS_BAD_NUMBER_FORMAT); } // [Expected word value]
+      // Check if value is negative -> Pencil down
 
-      // Assumes it is Pencil Down
-      line_pencil = &line_pencil_down;
+      line_pencil = &line_pencil_up;              // Assumes it is Pencil Up
 
-      if(value >= Z_AXIS_LIMIT){
-        // It is Pencil Up
-        line_pencil = &line_pencil_up;
+      if(line[char_counter] == '-')
+        // It is Pencil Down
+        line_pencil = &line_pencil_down;
       }
       
       #ifdef DebugEnabled

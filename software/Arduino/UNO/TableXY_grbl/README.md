@@ -3,7 +3,10 @@
 Program modified by Jose Luis Gomez Costa, for converting Zaxis commands into Pencil up/down commands
 
 	When Z command is detected in a Command line:
-		- Mxx command is executed
+		- Mxx command is executed, depending on the value of Z movement:
+			Z positive is Pencil up
+			Z negative is Pencil down
+			Only the sign is checked.
 		- then the original command line is executed unmodified.
 		
 	This will imply always processing the Z axis, but as there is no hardware it will not interfere with the actual behaviour with a Pencil.
