@@ -26,12 +26,7 @@ Released under the MIT-license. See license.txt for details.
 
 /***********************************************************************
 Program modified by Jose Luis Gomez Costa:
-gcode.c/h
-
-Modified: a command Zdddd is converted into:
-	- M03 behaviour: if d > 0 (Pencil up)
-	- M05 behaviour: if d <= 0 (Pencil down)
-	- Z command is discarded
+For a general view of modifications, see file README.md
 
 ***********************************************************************/
 
