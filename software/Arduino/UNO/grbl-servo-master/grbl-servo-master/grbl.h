@@ -21,23 +21,6 @@
 #ifndef grbl_h
 #define grbl_h
 
-// Serial Port test Messages
-
-// Comment out for disabling Debug messages
-#define DebugEnabled Yes
-
-/**********************
-Example
-      #ifdef DebugEnabled
-        printString("Original: ");
-        printString(line);
-        printString("\r\nModified: ");        
-        printString(gline_pencil);
-        printString("\r\n");           
-      #endif
-****************************/
-
-
 // Grbl versioning system
 #define GRBL_VERSION "0.9i"
 #define GRBL_VERSION_BUILD "20150620"
@@ -57,8 +40,6 @@ Example
 
 // Define the Grbl system include files. NOTE: Do not alter organization.
 #include "config.h"
-#include "pencil.h"
-#include "pencil_version.h"
 #include "nuts_bolts.h"
 #include "settings.h"
 #include "system.h"

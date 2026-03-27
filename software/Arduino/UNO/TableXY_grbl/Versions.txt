@@ -163,3 +163,13 @@ Author: Jose Luis Gomez Costa
 	pencil.c:
 		Corrected compilation errors
 		
+----------------------------------------
+Version: 0.505
+
+Date:	27/03/2026
+Author: Jose Luis Gomez Costa
+
+	pencil.h:
+		GCODE_PENCIL_UP: Added servo movement
+		INverted Servo actions
+		

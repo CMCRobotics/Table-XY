@@ -1,10 +1,10 @@
 /*
-  gcode.h - rs274/ngc parser.
+  spindle_control.h - spindle control methods
   Part of Grbl
 
-  Copyright (c) 2011-2015 Sungeun K. Jeon
+  Copyright (c) 2012-2015 Sungeun K. Jeon
   Copyright (c) 2009-2011 Simen Svale Skogsrud
-  
+
   Grbl is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
@@ -17,15 +17,21 @@
 
   You should have received a copy of the GNU General Public License
   along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
-*/
+*/ 
 
-#ifndef pencil_version_h
-#define pencil_version_h
+#ifndef spindle_control_h
+#define spindle_control_h 
 
-#define GRBL_PENCIL_VERSION "0.550"
 
-#define GRBL_BUILD_PENCIL_DAY   "27"    //compilation Day
-#define GRBL_BUILD_PENCIL_MONTH "03"    //compilation Month
-#define GRBL_BUILD_PENCIL_YEAR "2026"   //compilation Year
+// Initializes spindle pins and hardware PWM, if enabled.
+void spindle_init();
+
+// Sets spindle direction and spindle rpm via PWM, if enabled.
+void spindle_run(uint8_t direction, float rpm);
+
+void spindle_set_state(uint8_t state, float rpm);
+
+// Kills spindle.
+void spindle_stop();
 
 #endif

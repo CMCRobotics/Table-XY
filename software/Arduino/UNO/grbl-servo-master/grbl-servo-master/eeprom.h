@@ -1,10 +1,9 @@
 /*
-  gcode.h - rs274/ngc parser.
+  eeprom.h - EEPROM methods
   Part of Grbl
 
-  Copyright (c) 2011-2015 Sungeun K. Jeon
   Copyright (c) 2009-2011 Simen Svale Skogsrud
-  
+
   Grbl is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
@@ -19,13 +18,12 @@
   along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef pencil_version_h
-#define pencil_version_h
+#ifndef eeprom_h
+#define eeprom_h
 
-#define GRBL_PENCIL_VERSION "0.550"
-
-#define GRBL_BUILD_PENCIL_DAY   "27"    //compilation Day
-#define GRBL_BUILD_PENCIL_MONTH "03"    //compilation Month
-#define GRBL_BUILD_PENCIL_YEAR "2026"   //compilation Year
+unsigned char eeprom_get_char(unsigned int addr);
+void eeprom_put_char(unsigned int addr, unsigned char new_value);
+void memcpy_to_eeprom_with_checksum(unsigned int destination, char *source, unsigned int size);
+int memcpy_from_eeprom_with_checksum(char *destination, unsigned int source, unsigned int size);
 
 #endif

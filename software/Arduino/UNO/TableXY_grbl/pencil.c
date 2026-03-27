@@ -22,7 +22,7 @@
 Parses the Gcode line.
 
   When Z command is detected:
-    - Mxx command is executed
+    - Mxx Syy command is executed
     - then the original command line is executed unmodified.
 
   Process: 

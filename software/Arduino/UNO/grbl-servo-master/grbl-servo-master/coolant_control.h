@@ -1,10 +1,9 @@
 /*
-  gcode.h - rs274/ngc parser.
+  coolant_control.h - spindle control methods
   Part of Grbl
 
-  Copyright (c) 2011-2015 Sungeun K. Jeon
-  Copyright (c) 2009-2011 Simen Svale Skogsrud
-  
+  Copyright (c) 2012-2015 Sungeun K. Jeon
+
   Grbl is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation, either version 3 of the License, or
@@ -19,13 +18,13 @@
   along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef pencil_version_h
-#define pencil_version_h
+#ifndef coolant_control_h
+#define coolant_control_h 
 
-#define GRBL_PENCIL_VERSION "0.550"
 
-#define GRBL_BUILD_PENCIL_DAY   "27"    //compilation Day
-#define GRBL_BUILD_PENCIL_MONTH "03"    //compilation Month
-#define GRBL_BUILD_PENCIL_YEAR "2026"   //compilation Year
+void coolant_init();
+void coolant_stop();
+void coolant_set_state(uint8_t mode);
+void coolant_run(uint8_t mode);
 
 #endif

@@ -27,7 +27,17 @@
 //--------------------------------------------------------------------------------------------------------
 // Conversion of Z plane movement to M03 / M05 Pencil Up or Down
 
-#define GCODE_PENCIL_UP "M3"
-#define GCODE_PENCIL_DOWN "M5"
+
+/******************
+Important Note: This string MUST follow the conventions:
+
+ Line of 0-terminated G-Code. 
+ The line is assumed to contain only uppercase characters and signed floating point values (no whitespace).
+ Comments and block delete characters must have been removed
+
+******************/
+
+#define GCODE_PENCIL_DOWN "M03S90"   // S: Servo movement: 90deg movement
+#define GCODE_PENCIL_UP "M5"
 
 #endif
