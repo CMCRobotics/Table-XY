@@ -154,8 +154,9 @@ void report_init_message()
 // Grbl help message
 void report_grbl_help() {
   #ifndef REPORT_GUI_MODE
-    printPgmString(PSTR("$$ (view Grbl settings)\r\n"
-                        "$# (view # parameters)\r\n"
+    printPgmString(PSTR("$M (view this Menu)\r\n"   
+                        "$$ (view Grbl settings)\r\n"
+                        "$# (view # parameters)\r\n"                     
                         "$G (view parser state)\r\n"
                         "$I (view GRBL general build info)\r\n"
                         "$P (view Pencil build info)\r\n"                        

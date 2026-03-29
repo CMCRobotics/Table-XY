@@ -170,6 +170,20 @@ Date:	27/03/2026
 Author: Jose Luis Gomez Costa
 
 	pencil.h:
-		GCODE_PENCIL_UP: Added servo movement
-		INverted Servo actions
+		GCODE_PENCIL_UP: Added servo movement:
+
+		Inverted Gcode Servo actions
+		
+----------------------------------------
+Version: 0.600
+
+Date:	27/03/2026
+Author: Jose Luis Gomez Costa
+
+	pencil.h:
+		M03 S motion to 86deg.
+	
+	system.c / report.c:
+		Added display of Menu
+		Menu items allows Upper or Lower case
 		
