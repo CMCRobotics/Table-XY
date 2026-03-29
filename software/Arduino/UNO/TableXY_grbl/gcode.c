@@ -19,19 +19,6 @@
   along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/********************
-Modified by Jose Luis Gomez Costa
-Modified: a command Zdddd is converted into:
-	- M03 behaviour: if d > 0 (Pencil up)
-	- M05 behaviour: if d <= 0 (Pencil down)
-	- Z command is discarded
-
-Version Date        Author  Description
-1.0     21/03/2026  JLGC    Initial Version
-
-
-**********************/
-
 #include "grbl.h"
 
 // NOTE: Max line number is defined by the g-code standard to be 99999. It seems to be an
@@ -84,7 +71,10 @@ static uint8_t gc_check_same_position(float *pos_a, float *pos_b)
 // characters have been removed. In this function, all units and positions are converted and 
 // exported to grbl's internal functions in terms of (mm, mm/min) and absolute machine 
 // coordinates, respectively.
-uint8_t gc_execute_line(char *line) 
+
+// Original name: uint8_t gc_execute_line(char *line) 
+
+uint8_t gc_execute_line_actual(char *line)
 {
   /* -------------------------------------------------------------------------------------
      STEP 1: Initialize parser block struct and copy current g-code state modes. The parser
@@ -302,9 +292,6 @@ uint8_t gc_execute_line(char *line)
           #ifndef USE_SPINDLE_DIR_AS_ENABLE_PIN
             case 4: 
           #endif
-
-          // M03 or M05 action
-
           case 3: case 5:
             word_bit = MODAL_GROUP_M7; 
             switch(int_value) {
@@ -363,23 +350,7 @@ uint8_t gc_execute_line(char *line)
           case 'T': word_bit = WORD_T; break; // gc.values.t = int_value;
           case 'X': word_bit = WORD_X; gc_block.values.xyz[X_AXIS] = value; axis_words |= (1<<X_AXIS); break;
           case 'Y': word_bit = WORD_Y; gc_block.values.xyz[Y_AXIS] = value; axis_words |= (1<<Y_AXIS); break;
-
-          // Z Axis action
-          case 'Z': 
-            // Original: word_bit = WORD_Z; gc_block.values.xyz[Z_AXIS] = value; axis_words |= (1<<Z_AXIS);
-            word_bit = MODAL_GROUP_M7;
-
-            if (value > Z_AXIS_LIMIT) {
-              // It is Safe zone -> Pencil up
-              gc_block.modal.spindle = PENCIL_UP;
-            }
-            else{
-              // It is work Zone: -> Pencil down
-              gc_block.modal.spindle = PENCIL_DOWN;
-            }
-
-            break;
-
+          case 'Z': word_bit = WORD_Z; gc_block.values.xyz[Z_AXIS] = value; axis_words |= (1<<Z_AXIS); break;
           default: FAIL(STATUS_GCODE_UNSUPPORTED_COMMAND);
         } 
         

@@ -154,10 +154,12 @@ void report_init_message()
 // Grbl help message
 void report_grbl_help() {
   #ifndef REPORT_GUI_MODE
-    printPgmString(PSTR("$$ (view Grbl settings)\r\n"
-                        "$# (view # parameters)\r\n"
+    printPgmString(PSTR("$M (view this Menu)\r\n"   
+                        "$$ (view Grbl settings)\r\n"
+                        "$# (view # parameters)\r\n"                     
                         "$G (view parser state)\r\n"
-                        "$I (view build info)\r\n"
+                        "$I (view GRBL general build info)\r\n"
+                        "$P (view Pencil build info)\r\n"                        
                         "$N (view startup blocks)\r\n"
                         "$x=value (save Grbl setting)\r\n"
                         "$Nx=line (save startup block)\r\n"
@@ -403,6 +405,13 @@ void report_build_info(char *line)
   printPgmString(PSTR("]\r\n"));
 }
 
+// Prints Pencil build info line
+void report_build_pencil_info(char *line)
+{
+  printPgmString(PSTR("Grbl Pencil [" GRBL_PENCIL_VERSION "." GRBL_BUILD_PENCIL"]"));  
+  printString(line);
+  printPgmString(PSTR("\r\n"));
+}
 
 // Prints the character string line Grbl has received from the user, which has been pre-parsed,
 // and has been sent into protocol_execute_line() routine to be executed by Grbl.

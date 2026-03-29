@@ -59,6 +59,21 @@ void printPgmString(const char *s)
 // 			'A' + buf[i - 1] - 10);
 // }
 
+// Prints an uint16 variable with base and number of desired digits.
+void print_unsigned_int16(uint16_t n, uint8_t base, uint8_t digits)
+{ 
+  unsigned char buf[digits];
+  uint8_t i = 0;
+
+  for (; i < digits; i++) {
+      buf[i] = n % base ;
+      n /= base;
+  }
+
+  for (; i > 0; i--)
+      serial_write('0' + buf[i - 1]);
+}
+
 
 // Prints an uint8 variable with base and number of desired digits.
 void print_unsigned_int8(uint8_t n, uint8_t base, uint8_t digits)

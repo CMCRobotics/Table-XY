@@ -163,12 +163,18 @@ uint8_t system_execute_line(char *line)
     default : 
       // Block any system command that requires the state as IDLE/ALARM. (i.e. EEPROM, homing)
       if ( !(sys.state == STATE_IDLE || sys.state == STATE_ALARM) ) { return(STATUS_IDLE_ERROR); }
-      switch( line[char_counter] ) {
+      switch(line[char_counter]) {
+        
+        case 'M' : case 'm' :// Display thsi menu
+          report_grbl_help(); 
+          break;
+
         case '#' : // Print Grbl NGC parameters
           if ( line[++char_counter] != 0 ) { return(STATUS_INVALID_STATEMENT); }
           else { report_ngc_parameters(); }
-          break;          
-        case 'H' : // Perform homing cycle [IDLE/ALARM]
+          break;
+
+        case 'H' : case 'h' :// Perform homing cycle [IDLE/ALARM]
           if (bit_istrue(settings.flags,BITFLAG_HOMING_ENABLE)) { 
             sys.state = STATE_HOMING; // Set system state variable
             // Only perform homing if Grbl is idle or lost.
@@ -188,7 +194,8 @@ uint8_t system_execute_line(char *line)
             }
           } else { return(STATUS_SETTING_DISABLED); }
           break;
-        case 'I' : // Print or store build info. [IDLE/ALARM]
+          
+        case 'I' : case 'i' :// Print or store build info. [IDLE/ALARM]
           if ( line[++char_counter] == 0 ) { 
             settings_read_build_info(line);
             report_build_info(line);
@@ -200,7 +207,23 @@ uint8_t system_execute_line(char *line)
             } while (line[char_counter++] != 0);
             settings_store_build_info(line);
           }
+          break;
+
+        case 'P' : case 'p' :// Print or store Pencil build info. [IDLE/ALARM]
+          if ( line[++char_counter] == 0 ) { 
+            settings_read_build_pencil_info(line);
+            report_build_pencil_info(line);
+          } else { // Store startup line [IDLE/ALARM]
+            if(line[char_counter++] != '=') { return(STATUS_INVALID_STATEMENT); }
+            helper_var = char_counter; // Set helper variable as counter to start of user info line.
+            do {
+              line[char_counter-helper_var] = line[char_counter];
+            } while (line[char_counter++] != 0);
+            settings_store_build_pencil_info(line);
+          }
           break; 
+
+
         case 'R' : // Restore defaults [IDLE/ALARM]
           if (line[++char_counter] != 'S') { return(STATUS_INVALID_STATEMENT); }
           if (line[++char_counter] != 'T') { return(STATUS_INVALID_STATEMENT); }
@@ -215,7 +238,7 @@ uint8_t system_execute_line(char *line)
           report_feedback_message(MESSAGE_RESTORE_DEFAULTS);
           mc_reset(); // Force reset to ensure settings are initialized correctly.
           break;
-        case 'N' : // Startup lines. [IDLE/ALARM]
+        case 'N' : case 'n' :// Startup lines. [IDLE/ALARM]
           if ( line[++char_counter] == 0 ) { // Print startup lines
             for (helper_var=0; helper_var < N_STARTUP_LINE; helper_var++) {
               if (!(settings_read_startup_line(helper_var, line))) {

@@ -61,6 +61,7 @@
 #define EEPROM_ADDR_PARAMETERS     512U
 #define EEPROM_ADDR_STARTUP_BLOCK  768U
 #define EEPROM_ADDR_BUILD_INFO     942U
+#define EEPROM_ADDR_BUILD_PENCIL_INFO     962U
 
 // Define EEPROM address indexing for coordinate parameters
 #define N_COORDINATE_SYSTEM 6  // Number of supported work coordinate systems (from index 1)
@@ -119,9 +120,11 @@ uint8_t settings_read_startup_line(uint8_t n, char *line);
 
 // Stores build info user-defined string
 void settings_store_build_info(char *line);
+void settings_store_build_pencil_info(char *line);
 
 // Reads build info user-defined string
 uint8_t settings_read_build_info(char *line);
+uint8_t settings_read_build_pencil_info(char *line);
 
 // Writes selected coordinate data to EEPROM
 void settings_write_coord_data(uint8_t coord_select, float *coord_data);

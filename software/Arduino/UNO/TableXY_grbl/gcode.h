@@ -22,18 +22,6 @@
 #ifndef gcode_h
 #define gcode_h
 
-#define GRBL_PENCIL_VERSION "1.0"
-#define GRBL_PENCIL_BUILD "20260321"
-
-//--------------------------------------------------------------------------------------------------------
-// Conversion of Z plabne movement to M03 / M05 Pendil Up or Down
-
-#define Z_AXIS_LIMIT  0     // Limit of Zaxis movement: higher it is Pencil up, lower it is Pencil down
-#define PENCIL_UP     SPINDLE_DISABLE   // Action for setting pencil UP
-#define PENCIL_DOWN   SPINDLE_ENABLE_CW   // Action for setting pencil UP
-
-//--------------------------------------------------------------------------------------------------------
-
 
 // Define modal group internal numbers for checking multiple command violations and tracking the 
 // type of command that is called in the block. A modal group is a group of g-code commands that are
@@ -216,7 +204,7 @@ extern parser_block_t gc_block;
 void gc_init();
 
 // Execute one block of rs275/ngc/g-code
-uint8_t gc_execute_line(char *line);
+uint8_t gc_execute_line_actual(char *line);
 
 // Set g-code parser position. Input in steps.
 void gc_sync_position(); 
