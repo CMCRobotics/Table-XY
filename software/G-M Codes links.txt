@@ -1,8 +1,0 @@
-G/M Code Links:
-
-G Code: https://linuxcnc.org/docs/2.8/html/gcode/gcode_fr.html
-M Code: https://linuxcnc.org/docs/2.8/html/gcode/m-code_fr.html
-
-
-
-
