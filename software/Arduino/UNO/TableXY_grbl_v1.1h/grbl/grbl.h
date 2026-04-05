@@ -25,6 +25,11 @@
 #define GRBL_VERSION "1.1h"
 #define GRBL_VERSION_BUILD "20190825"
 
+// Define if spindle will move up/down pencil, parsing Z GCodes
+//  See description in pencil.c
+// Comment this line if standar action is required
+// #define PENCIL_SPINDLE_ENABLED
+
 // Define standard libraries used by Grbl.
 #include <avr/io.h>
 #include <avr/pgmspace.h>

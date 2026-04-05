@@ -26,11 +26,16 @@ Parses the Gcode line.
     - then the original command line is executed unmodified.
 
   Process: 
-    1.0 Keep OriginalLine unmodified
+    1.0 Keep Original Line unmodified
     2.0 Command Line is parsed:	
       2.1 if no Z command is found, jump to 3.0
       2.2 if Z command is found: Generate a Dummy CommandLine with the M03 or M05.
-          Only sign is verifyed, not actual value
+            Zvalue
+              value = floating Point
+              value = positive -> Pencil Up
+              value  = negative -> Pencil Down
+              Only sign is verifyed, not actual value
+              
       2.3 Execute Dummy CommandLine
     3.0 Execute OriginalLine
     4.0 Return with:
