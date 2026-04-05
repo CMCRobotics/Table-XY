@@ -51,56 +51,69 @@ characters have been removed.
 char line_pencil_up[] = GCODE_PENCIL_UP;
 char line_pencil_down[] = GCODE_PENCIL_DOWN;
 
-uint8_t gc_execute_line(char *line) 
-{
+#ifdef  PENCIL_SPINDLE_ENABLED
+// Pencil control through sindle
 
-  uint8_t char_counter = 0;  
-  char *line_pencil;
+  uint8_t gc_execute_line(char *line) 
+  {
 
-  uint8_t execution_status;
+    uint8_t char_counter = 0;  
+    char *line_pencil;
+
+    uint8_t execution_status;
 
 
-  while (line[char_counter] != 0) { // Loop until no more g-code words in line.
-    
-    // Import the next g-code word, expecting a letter followed by a value. 
-    // Any possible error will be detected when executing the GCode command line
-    
-    if(line[char_counter] == 'Z') { 
-      //It is Zaxis movement
-      char_counter++;
+    while (line[char_counter] != 0) { // Loop until no more g-code words in line.
       
-      // Check if value is negative -> Pencil down
+      // Import the next g-code word, expecting a letter followed by a value. 
+      // Any possible error will be detected when executing the GCode command line
+      
+      if(line[char_counter] == 'Z') { 
+        //It is Zaxis movement
+        char_counter++;
+        
+        // Check if value is negative -> Pencil down
 
-      line_pencil = &line_pencil_up;              // Assumes it is Pencil Up
+        line_pencil = &line_pencil_up;              // Assumes it is Pencil Up
 
-      if(line[char_counter] == '-'){
-        // It is Pencil Down
-        line_pencil = &line_pencil_down;
+        if(line[char_counter] == '-'){
+          // It is Pencil Down
+          line_pencil = &line_pencil_down;
+        }
+        
+        #ifdef DebugEnabled
+          printString("Added: ");        
+          printString(line_pencil);      
+          printString(" - Original: ");
+          printString(line);
+          printString("\r\n");           
+        #endif
+
+
+        // Move Pencil
+        execution_status = gc_execute_line_actual(line_pencil);
+        if(execution_status != STATUS_OK) { return execution_status;}     
       }
-      
-      #ifdef DebugEnabled
-        printString("Added: ");        
-        printString(line_pencil);      
-        printString(" - Original: ");
-        printString(line);
-        printString("\r\n");           
-      #endif
 
-
-      // Move Pencil
-      execution_status = gc_execute_line_actual(line_pencil);
-      if(execution_status != STATUS_OK) { return execution_status;}     
+      char_counter++;
+    
     }
 
-    char_counter++;
-  
+    // execute initial command line
+    execution_status = gc_execute_line_actual(line);
+    if(execution_status != STATUS_OK) { return execution_status;} 
+
+    // TODO: % to denote start of program.
+    return(STATUS_OK);
+
+#else
+  // No pencil control through sindle
+
+  uint8_t gc_execute_line(char *line) 
+  {
+    return gc_execute_line_actual(line); 
   }
 
-  // execute initial command line
-  execution_status = gc_execute_line_actual(line);
-  if(execution_status != STATUS_OK) { return execution_status;} 
+#endif
 
-  // TODO: % to denote start of program.
-  return(STATUS_OK);
-}
         
