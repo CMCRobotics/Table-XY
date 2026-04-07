@@ -1,0 +1,24 @@
+- Tweak: Grbl now forces a buffer sync or stop motion whenever a g-code command needs to update and write a value to EEPROM or changes the work coordinate offset.
+
+    - This addresses two old issues in all prior Grbl versions. 
+	First, an EEPROM write requires interrupts to be disabled, including stepper and serial comm. Steps can be lost and data can be corrupted. 
+	Second, the work position may not be correlated to the actual machine position, since machine position is derived from the actual current execution state, while work position is based on the g-code parser offset state.
+	They are usually not in sync and the parser state is several motions behind. This forced sync ensures work and machine positions are always correct.
+    - This behavior can be disabled through a config.h option, but it’s not recommended to do so.
+
+- Tweak: TX buffer size has been increased from 64 to 90 bytes to improve status reporting and overall performance.
+
+- Tweak: Grbl’s serial buffer increased by +1 internally, such that 128 bytes means 128, not 127 due to the ring buffer implementation. Long overdue.
+
+
+- Refactor: Single character printPgmStrings() went converted to direct serial_write() commands to save significant flash space.
+
+
+===================== Version 1.0
+- Bug Fix: Applied v0.9 master fixes to CoreXY homing.
+
+- Bug Fix: The print float function would cause Grbl to crash if a value was 1e6 or greater. Increased the buffer by 3 bytes to help prevent this in the future.
+
+- Bug Fix: Build info and startup string EEPROM restoring was not writing the checksum value.
+
+- Bug Fix: Corrected an issue with safety door restoring the proper spindle and coolant state. It worked before, but breaks with laser mode that can continually change spindle state per planner block.

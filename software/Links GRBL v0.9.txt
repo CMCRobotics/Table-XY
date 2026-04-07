@@ -1,0 +1,5 @@
+GRBL updates: https://github.com/gnea
+GRBL 0.9 https://github.com/grbl/grbl/wiki/Configuring-Grbl-v0.9
+
+Pilot CNC via GCode with Arduino: https://letmeknow.fr/fr/blog/110-tuto-piloter-une-cnc-avec-arduino-et-grbl
+
