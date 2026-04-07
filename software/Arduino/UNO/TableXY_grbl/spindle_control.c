@@ -25,9 +25,15 @@
 
 #include "grbl.h"
 
-#define RC_SERVO_SHORT     15       // Timer ticks for 0.6ms pulse duration  (9 for 0.6ms)
-#define RC_SERVO_LONG      32       // Timer ticks for 2.5 ms pulse duration  (39 for 2.5ms)     
-//#define RC_SERVO_INVERT     1     // Uncomment to invert servo direction
+/*
+If you want to have the servo working from 0 --> 180 degrees:
+	RC_SERVO_SHORT : 9
+	RC_SERVO_LONG : 39
+*/
+
+#define RC_SERVO_SHORT     9       // Original: 15
+#define RC_SERVO_LONG      39      // Original: 32     
+//#define RC_SERVO_INVERT     1    // Uncomment to invert servo direction
 
 
 void spindle_init()

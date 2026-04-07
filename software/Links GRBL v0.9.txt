@@ -1,5 +1,7 @@
 GRBL updates: https://github.com/gnea
 GRBL 0.9 https://github.com/grbl/grbl/wiki/Configuring-Grbl-v0.9
 
+GRBL 0.9i with Servo motor suppor: https://github.com/misan/grbl-servo
+
 Pilot CNC via GCode with Arduino: https://letmeknow.fr/fr/blog/110-tuto-piloter-une-cnc-avec-arduino-et-grbl
 
