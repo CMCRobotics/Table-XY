@@ -195,5 +195,37 @@ Author: Jose Luis Gomez Costa
 
 	spindle_control.c:
 		RC_SERVO updated for 0-180 deg
+	
+----------------------------------------
+Version: 0.800
 
-		
+Date:	08/04/2026
+Author: Jose Luis Gomez Costa
+
+	Invert the behaviour of M5/M3 
+		M5: 
+			Start/end program: put pencil in up safe zone
+			Pencil up: set the Pencil Servo axis in vertical position
+		M3: 
+			Pencil up: set the Pencil Servo axis in vertical position
+			Pencil down: set the Penscl Servo axis in horizontal position
+
+	spindle_control.c
+		Uncommented: #define RC_SERVO_INVERT 
+		Changed RC_SERVO_LONG  to 32
+
+	pencil.h
+		Changed #define GCODE_PENCIL_DOWN "M03S63"
+
+----------------------------------------
+Version: 0.810
+
+Date:	08/04/2026
+Author: Jose Luis Gomez Costa
+
+	spindle_control.c
+		Uncommented: #define RC_SERVO_INVERT 
+		Changed RC_SERVO_LONG  to 32
+
+	pencil.h
+		Changed #define GCODE_PENCIL_DOWN "M03S63"		

@@ -32,8 +32,9 @@ If you want to have the servo working from 0 --> 180 degrees:
 */
 
 #define RC_SERVO_SHORT     9       // Original: 15
-#define RC_SERVO_LONG      39      // Original: 32     
-//#define RC_SERVO_INVERT     1    // Uncomment to invert servo direction
+#define RC_SERVO_LONG      32
+
+#define RC_SERVO_INVERT     1    // Uncomment to invert servo direction
 
 
 void spindle_init()

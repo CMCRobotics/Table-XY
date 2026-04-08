@@ -299,7 +299,7 @@ uint8_t gc_execute_line_actual(char *line)
               #ifndef USE_SPINDLE_DIR_AS_ENABLE_PIN
                 case 4: gc_block.modal.spindle = SPINDLE_ENABLE_CCW; break;
               #endif
-              case 5: gc_block.modal.spindle = SPINDLE_DISABLE; break;
+              case 5: gc_block.modal.spindle = SPINDLE_DISABLE;break;
             }
             break;            
          #ifdef ENABLE_M7  
