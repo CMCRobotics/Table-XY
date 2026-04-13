@@ -1,0 +1,84 @@
+Changelog
+
+--------------------------------------------------------------------------------
+Version: 0.1
+
+Date:	09/04/2026
+Author: Jose Luis Gomez Costa
+
+	Initial Version
+
+--------------------------------------------------------------------------------
+Version: 0.101
+
+Date:	09/04/2026
+Author: Jose Luis Gomez Costa
+
+	Modified the actions to display Version/program purpose
+	
+--------------------------------------------------------------------------------
+Version: 0.102
+
+Date:	11/04/2026
+Author: Jose Luis Gomez Costa
+
+	Adding Try-Except to input/output streams
+	Added utils.py
+	
+--------------------------------------------------------------------------------
+Version: 0.150
+
+Date:	11/04/2026
+Author: Jose Luis Gomez Costa
+
+	with open, can not be used
+
+--------------------------------------------------------------------------------
+Version: 0.160
+
+Date:	12/04/2026
+Author: Jose Luis Gomez Costa
+
+	log file stored in same directory as Gcode file or in present directory
+	Trying ot create a log.log file throws an error if file does not exist yet
+	
+--------------------------------------------------------------------------------
+Version: 0.200
+
+Date:	12/04/2026
+Author: Jose Luis Gomez Costa
+
+	log.log file problem solved. 
+		May be the directory was created/renamed after WSL being started.
+		Therefore a problem with access rights.
+
+--------------------------------------------------------------------------------
+Version: 0.210
+
+Date:	13/04/2026
+Author: Jose Luis Gomez Costa
+
+	Changed Directory name from serial_grbl to grbl_serial
+	grbl_serial.py: 
+		Added Description
+		Printed (and to log if enabled) GRBL Version
+		
+--------------------------------------------------------------------------------
+Version: 0.210
+
+Date:	13/04/2026
+Author: Jose Luis Gomez Costa
+
+	Changed Directory name from serial_grbl to grbl_serial
+	grbl_serial.py: 
+		Added Description
+		Printed (and to log if enabled) GRBL Version
+
+--------------------------------------------------------------------------------
+Version: 1.000
+
+Date:	13/04/2026
+Author: Jose Luis Gomez Costa
+
+	First production Version
+
