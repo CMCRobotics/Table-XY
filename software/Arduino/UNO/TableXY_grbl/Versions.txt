@@ -196,4 +196,20 @@ Author: Jose Luis Gomez Costa
 	spindle_control.c:
 		RC_SERVO updated for 0-180 deg
 
+----------------------------------------
+Version: 0.705
+
+Date:	30/04/2026
+Author: Jose Luis Gomez Costa
+
+	pencil.h:
+		switched data for GCODE_PENCIL_UP  and GCODE_PENCIL_DOWN
 		
+----------------------------------------
+Version: 1.000
+
+Date:	04/05/2026
+Author: Jose Luis Gomez Costa
+
+	First Production version
+	
