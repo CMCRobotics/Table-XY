@@ -37,7 +37,7 @@ Important Note: This string MUST follow the conventions:
 
 ******************/
 
-#define GCODE_PENCIL_UP "M03S85"   // S: Servo movement: 85deg movement
-#define GCODE_PENCIL_DOWN "M5"
+#define GCODE_PENCIL_DOWN "M03S85"   // S: Servo movement
+#define GCODE_PENCIL_UP "M03S00"   // S: Servo movement
 
 #endif

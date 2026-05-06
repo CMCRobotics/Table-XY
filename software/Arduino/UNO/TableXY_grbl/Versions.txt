@@ -213,3 +213,15 @@ Author: Jose Luis Gomez Costa
 
 	First Production version
 	
+----------------------------------------
+Version: 1.100
+
+Date:	06/05/2026
+Author: Jose Luis Gomez Costa
+
+	To be corrected: M5 at start/end of GRBL code must send the pencil to UP, not Down
+  		spindle_control.c
+			Enabled RC_SERVO_INVERT
+	
+	pencil.h:
+		GCODE_PENCIL_DOWN / UP now with M03 movements

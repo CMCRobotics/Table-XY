@@ -22,9 +22,9 @@
 #ifndef pencil_version_h
 #define pencil_version_h
 
-#define GRBL_PENCIL_VERSION "1.000"
+#define GRBL_PENCIL_VERSION "1.100"
 
-#define GRBL_BUILD_PENCIL_DAY   "04"    //compilation Day
+#define GRBL_BUILD_PENCIL_DAY   "06"    //compilation Day
 #define GRBL_BUILD_PENCIL_MONTH "05"    //compilation Month
 #define GRBL_BUILD_PENCIL_YEAR "2026"   //compilation Year
 
