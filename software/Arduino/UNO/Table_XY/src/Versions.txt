@@ -225,3 +225,24 @@ Author: Jose Luis Gomez Costa
 	
 	pencil.h:
 		GCODE_PENCIL_DOWN / UP now with M03 movements
+
+----------------------------------------
+Version: 1.101
+
+Date:	18/05/2026
+Author: Jose Luis Gomez Costa
+
+	For VSCode/PlatformIO
+
+	gcode.h:
+		Added declaration for uint8_t gc_execute_line(char *line)
+
+	nuts_bolts.h:
+		Corrected warnings for redefinitions max/min/bit
+
+	pencil.c:
+		Added address cast fro line_pencil = (char *) &....
+	
+	spindle_control.c:
+		Corrected definition of function :void spindle_set_state(uint8_t state, float rpm)
+		

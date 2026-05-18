@@ -205,6 +205,7 @@ void gc_init();
 
 // Execute one block of rs275/ngc/g-code
 uint8_t gc_execute_line_actual(char *line);
+uint8_t gc_execute_line(char *line);
 
 // Set g-code parser position. Input in steps.
 void gc_sync_position(); 

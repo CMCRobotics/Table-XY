@@ -48,11 +48,24 @@
 #define clear_vector(a) memset(a, 0, sizeof(a))
 #define clear_vector_float(a) memset(a, 0.0, sizeof(float)*N_AXIS)
 // #define clear_vector_long(a) memset(a, 0.0, sizeof(long)*N_AXIS)
+
+
+#ifdef max
+  #undef max
+#endif
 #define max(a,b) (((a) > (b)) ? (a) : (b))
+
+#ifdef min
+  #undef min
+#endif
 #define min(a,b) (((a) < (b)) ? (a) : (b))
 
 // Bit field and masking macros
+#ifdef bit
+  #undef bit
+#endif
 #define bit(n) (1 << n) 
+
 #define bit_true_atomic(x,mask) {uint8_t sreg = SREG; cli(); (x) |= (mask); SREG = sreg; }
 #define bit_false_atomic(x,mask) {uint8_t sreg = SREG; cli(); (x) &= ~(mask); SREG = sreg; }
 #define bit_toggle_atomic(x,mask) {uint8_t sreg = SREG; cli(); (x) ^= (mask); SREG = sreg; }

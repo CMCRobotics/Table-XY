@@ -66,11 +66,11 @@ uint8_t gc_execute_line(char *line)
       
       // Check if value is negative -> Pencil down
 
-      line_pencil = &line_pencil_up;              // Assumes it is Pencil Up
+      line_pencil = (char *) &line_pencil_up;              // Assumes it is Pencil Up
 
       if(line[char_counter] == '-'){
         // It is Pencil Down
-        line_pencil = &line_pencil_down;
+        line_pencil = (char *)&line_pencil_down;
       }
       
       #ifdef DebugEnabled
