@@ -1,3 +1,7 @@
+---------------------------------------------------------------------------
+Description files: https://www.instructables.com/4xiDraw/General
+
+---------------------------------------------------------------------------
 Universal GCode sender: 
 		https://universalgcodesender.com/
 		https://github.com/winder/Universal-G-Code-Sender?tab=readme-ov-file
@@ -5,12 +9,24 @@ Universal GCode sender:
 		UGS Platform (Rich): Run directly the exe in d:\Hobby\GRBL\ugsplatform-win\bin\
 		UGS Clasic: Simple for sending direct commands to the Controller. Requires JAVA 61
 
-		
-GRBL: https://github.com/grbl/grbl/tree/master/grbl
-      https://github.com/gnea/grbl
-
+---------------------------------------------------------------------------
 
 Display/Simulate GCode work https://camotics.org/
+
+---------------------------------------------------------------------------
+GRBL: https://github.com/grbl/grbl/tree/master/grbl
+      https://github.com/gnea/grbl
+	  
+GRBL updates: https://github.com/gnea
+GRBL 1.1 https://github.com/gnea/grbl
+
+GRBL 0.9 https://github.com/grbl/grbl/wiki/Configuring-Grbl-v0.9
+
+GRBL 0.9i with Servo motor support: https://github.com/misan/grbl-servo
+
+Pilot CNC via GCode with Arduino: https://letmeknow.fr/fr/blog/110-tuto-piloter-une-cnc-avec-arduino-et-grbl
+
+Arduino Forum for GRBL: https://forum.arduino.cc/t/arduino-uno-r4-minima-grbl-upload-error/1385989
 
 GRBL with servo: 	https://github.com/misan/grbl-servo	  
 
@@ -20,8 +36,7 @@ GRBL 0.9 https://github.com/grbl/grbl/wiki/Configuring-Grbl-v0.9
 Pilot CNC via GCode with Arduino: https://letmeknow.fr/fr/blog/110-tuto-piloter-une-cnc-avec-arduino-et-grbl
 
 
-Description files: https://www.instructables.com/4xiDraw/General
-
+---------------------------------------------------------------------------
 Documents on M et G Code:
 	http://fr.insta3dp.com/info/3d-printer-g-code-commands-full-list-tutori-79272752.html
 
