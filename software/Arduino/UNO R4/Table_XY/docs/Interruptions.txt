@@ -1,0 +1,28 @@
+  volatile uint32_t *irq_ptr = (volatile uint32_t *)SCB->VTOR;
+  Serial.print("\n SCV-VTOR: ");   Serial.println(SCB->VTOR, HEX); 
+
+
+
+Similar IRQManager.cpp
+
+=====================================================================================================
+//  allows to put any maskable interrupt into the table and keep last_interrupt_index up to date. 
+bool IRQManager::addMaskableInterrupt(uint8_t eventMask, Irq_f fnc /*= nullptr*/) {
+    /* getting the address of the current location of the irq vector table */
+    volatile uint32_t *irq_ptr = (volatile uint32_t *)SCB->VTOR;
+    /* set the displacement to the "programmable" part of the table */
+    irq_ptr += FIXED_IRQ_NUM;
+    bool rv = true;
+    
+    __disable_irq();
+    
+    *(irq_ptr + last_interrupt_index) = (uint32_t)fnc;
+    R_ICU->IELSR[last_interrupt_index] = eventMask;
+    R_BSP_IrqDisable((IRQn_Type)last_interrupt_index);
+    R_BSP_IrqStatusClear((IRQn_Type)last_interrupt_index);
+    NVIC_SetPriority((IRQn_Type)last_interrupt_index, 12);
+    R_BSP_IrqEnable ((IRQn_Type)last_interrupt_index);
+    
+    last_interrupt_index++;
+    
+    __enable_irq();

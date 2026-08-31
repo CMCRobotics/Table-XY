@@ -1,0 +1,1200 @@
+Detail of versions
+	Conversion of TableXY GRBL 0.9i with Servo as spindle for arduino Uno R4 WiFi
+
+ATTENTION:
+	SOME parts of original GRBL code are commented out until their conversion to Arduino Uno R4 is made
+
+----------------------------------------
+Version: R4 0.003
+
+Date:	27/06/2026
+Author: Jose Luis Gomez Costa
+
+	Starting coding
+
+----------------------------------------
+Version: R4 0.004
+
+Date:	27/06/2026
+Author: Jose Luis Gomez Costa
+
+	Added Data Flash functions
+
+----------------------------------------
+Version: R4 0.005
+
+Date:	28/06/2026
+Author: Jose Luis Gomez Costa
+
+	Adding Stepper functions
+
+----------------------------------------
+Version: R4 0.006
+
+Date:	29/06/2026
+Author: Jose Luis Gomez Costa
+
+	Adding Stepper System
+
+----------------------------------------
+Version: R4 0.007
+
+Date:	30/06/2026
+Author: Jose Luis Gomez Costa
+
+	Adding Control inputs
+
+----------------------------------------
+Version: R4 0.008
+
+Date:	01/07/2026
+Author: Jose Luis Gomez Costa
+
+	Adding Control input functions
+
+----------------------------------------
+Version: R4 0.009
+
+Date:	01/07/2026
+Author: Jose Luis Gomez Costa
+
+	Added Limit (almost), Cooling, most of functions
+
+----------------------------------------
+Version: R4 0.010
+
+Date:	01/07/2026
+Author: Jose Luis Gomez Costa
+
+	Adding
+		- Limit
+		- Servo spindle
+
+----------------------------------------
+Version: R4 GRBL 0.011
+
+Date:	03/07/2026
+Author: Jose Luis Gomez Costa
+
+	Added
+		- delay_us and delay_ms
+		- Servo spindle
+
+	Adding
+		- Limit
+
+----------------------------------------
+Version: R4 GRBL 0.020
+
+Date:	04/07/2026
+Author: Jose Luis Gomez Costa
+
+	Added
+		- Limit
+
+	To be checked:
+		- TODO sentences:
+			- limit.cpp: verify active/not active sens of limit bits
+			- system.cpp: verify active/not active sens of limit bits
+			- planner.cpp: verify units of Counters for Period/delay/Pulse high
+		- Add disclaimer
+
+----------------------------------------
+Version: R4 GRBL 0.030
+
+Date:	05/07/2026
+Author: Jose Luis Gomez Costa
+
+	To be checked:
+		- TODO sentences:
+			- system.cpp:
+				Line 331:  TODO: correct for 8 bit/16bit registers
+			- planner.cpp: verify units of Counters for Period/delay/Pulse high
+
+		- Add disclaimer
+
+----------------------------------------
+Version: R4 GRBL 0.040
+
+Date:	06/07/2026
+Author: Jose Luis Gomez Costa
+
+	To be checked:
+		- TODO sentences:
+			- system.cpp:
+				Line 331:  TODO: correct for 8 bit/16bit registers
+		- planner.cpp: verify units of Counters for delay/Pulse high
+		- Pulse Delay / Pulse High: verify setting place
+
+		- Add disclaimer
+
+----------------------------------------
+Version: R4 GRBL 0.050
+
+Date:	06/07/2026
+Author: Jose Luis Gomez Costa
+
+	- TODO sentences:
+		- system.cpp:
+			Line 331:  TODO: correct for 8 bit/16bit registers
+
+	- Add disclaimer
+
+----------------------------------------
+Version: R4 GRBL 0.100
+
+Date:	07/07/2026
+Author: Jose Luis Gomez Costa
+
+	- TODO sentences:
+		- system.cpp:
+			Line 331:  TODO: correct for 8 bit/16bit registers
+
+	- Added disclaimer and Copyrights
+
+----------------------------------------
+Version: R4 GRBL 0.200
+
+Date:	07/07/2026
+Author: Jose Luis Gomez Costa
+
+	- TODO sentences:
+		- system.cpp:
+			Line 331:  TODO: correct for 8 bit/16bit registers
+
+	- main.cpp MUST have setup()/loop() functions
+
+----------------------------------------
+Version: R4 GRBL 0.205
+
+Date:	07/07/2026
+Author: Jose Luis Gomez Costa
+
+	- TODO sentences:
+		- system.cpp:
+			Line 331:  TODO: correct for 8 bit/16bit registers
+
+	Testing Serial print
+
+----------------------------------------
+Version: R4 GRBL 0.207
+
+Date:	08/07/2026
+Author: Jose Luis Gomez Costa
+
+	- TODO sentences:
+		- system.cpp:
+			Line 331:  TODO: correct for 8 bit/16bit registers
+
+	Testing Serial print:
+		Added TEST-1/2 TestPoints
+		probe and coolant commented out
+
+----------------------------------------
+Version: R4 GRBL 0.300
+
+Date:	09/07/2026
+Author: Jose Luis Gomez Costa
+
+	- TODO sentences:
+		- system.cpp:
+			Line 331:  TODO: correct for 8 bit/16bit registers
+
+	Testing Serial print:
+		Added TEST-1/2 TestPoints
+		probe and coolant commented out
+
+		- To be thorougly checked the TX serial functions. It seems the TX Circular buffer is not correctly updated for discarding old inputs
+		- TX/RX exchange seems to work OK, except previous point
+
+----------------------------------------
+Version: R4 GRBL 0.400
+
+Date:	10/07/2026
+Author: Jose Luis Gomez Costa
+
+	- TODO sentences:
+		- system.cpp:
+			Line 331:  TODO: correct for 8 bit/16bit registers
+
+	Testing Serial print:
+		Complete refurbishement of Serial TX functions
+
+----------------------------------------
+Version: R4 GRBL 0.500
+
+Date:	10/07/2026
+Author: Jose Luis Gomez Costa
+
+	- TODO sentences:
+		- system.cpp:
+			Line 331:  TODO: correct for 8 bit/16bit registers
+		- Correct print.cpp functions for acepting the new serial_write(char *string)
+		- Store in Flash the corrected parameters
+
+----------------------------------------
+Version: R4 GRBL 0.600
+
+Date:	10/07/2026
+Author: Jose Luis Gomez Costa
+
+	- Corrected print.cpp / utils.cpp
+		Functions for accepting the new serial_write(char *string)
+
+	- TODO sentences:
+		- system.cpp:
+			Line 331:  TODO: correct for 8 bit/16bit registers
+		- Transform all functions:
+			from printPgmString(char *s) to printString(char *s)
+
+		- Store in Flash the corrected parameters
+
+----------------------------------------
+Version: R4 GRBL 0.610
+
+Date:	10/07/2026
+Author: Jose Luis Gomez Costa
+
+	- Transform all functions:
+			from printPgmString(char *s) to printString(char *s)
+
+	- TODO:
+		- system.cpp:
+			Line 331:  TODO: correct for 8 bit/16bit registers
+		- Test storing parameters in Flash
+
+----------------------------------------
+Version: R4 GRBL 0.616
+
+Date:	10/07/2026
+Author: Jose Luis Gomez Costa
+
+	- Tested storing parameters in Flash
+
+	- TODO:
+		- system.cpp:
+			Line 331:  TODO: correct for 8 bit/16bit registers
+		- Enable Probe and coolant
+
+Test process:
+	- OK: Verify / Update Parameters from R3 to R4
+
+	- Create files with XY:
+		1- Large positive slope
+		- Speed 100
+		- Speed 50
+
+		2- Large negative slope
+		- Speed 100
+		- Speed 50
+
+	  R3: note Step Pulse frequency
+	  R4: check compliance
+
+	- Check Limit pins
+	- Check Control pins
+	- Test Servo
+
+	Testing:
+		- XY Large positive:
+			ERROR: Step pulse is cleared at next ISR rather than after pulseWidth setting (10usec as per $0 parameter)
+			Changing $0 does not affect the placement of the IRQ
+
+
+----------------------------------------
+Version: R4 GRBL 0.620
+
+Date:	10/07/2026
+Author: Jose Luis Gomez Costa
+
+	- TODO:
+		- system.cpp:
+			Line 331:  TODO: correct for 8 bit/16bit registers
+		- Enable Probe and coolant
+
+Test process:
+	- OK: Verify / Update Parameters from R3 to R4
+
+	- Create files with XY:
+		1- Large positive slope
+		- Speed 100
+		- Speed 50
+
+		2- Large negative slope
+		- Speed 100
+		- Speed 50
+
+	  R3: note Step Pulse frequency
+	  R4: check compliance
+
+	- Check Limit pins
+	- Check Control pins
+	- Test Servo
+
+	Testing:
+		- XY Large positive:
+			ERROR: Step pulse is cleared at next ISR rather than after pulseWidth setting (10usec as per $0 parameter)
+			Changing $0 does not affect the placement of the IRQ
+			Bug Corrected: wrongly calculated parameter MOTOR_TICK_PER_USEC and MOTOR_TICK_PER_SEC
+
+----------------------------------------
+Version: R4 GRBL 0.625
+
+Date:	10/07/2026
+Author: Jose Luis Gomez Costa
+
+	- TODO:
+		- system.cpp:
+			Line 331:  TODO: correct for 8 bit/16bit registers
+		- Enable Probe and coolant
+
+Test process:
+	- OK: Verify / Update Parameters from R3 to R4
+
+	- Check R4 compliance with respecto to R3 values
+			#Pulse Y per Pulse X
+			Period X [usec]
+			Period Y  [usec]
+			Interruption Period  [usec]
+			#Interruptions per Pulse Y
+			Length Interruption [usec]
+
+		For files with XY:
+			1- Large positive slope
+			- Speed 100
+			- Speed 50
+
+			2- Large negative slope
+			- Speed 100
+			- Speed 50
+
+	- OK: Check Step Pulse width
+	- Check Limit pins
+	- Check Control pins
+	- Test Servo
+
+	Testing:
+		- XY Large positive
+			To be checked: memory width for ISR main function period Counters
+						st.exec_segment->cycles_per_tick (MUST be uint32_t). defined in typedef struct { ... } segment_t;
+
+
+----------------------------------------
+Version: R4 GRBL 0.650
+
+Date:	11/07/2026
+Author: Jose Luis Gomez Costa
+
+	- TODO:
+		- system.cpp:
+			Line 331:  TODO: correct for 8 bit/16bit registers
+
+		- Enable Probe and Coolant
+			functions commented out when referenced:
+				void probe_state_monitor()
+				uint8_t probe_get_state()
+				void probe_init()
+
+				void coolant_init()
+				void coolant_stop()
+				void coolant_set_state(uint8_t mode)
+				void coolant_run(uint8_t mode)
+
+
+Test process:
+	- OK: Verify / Update Parameters from R3 to R4
+
+	- Check R4 compliance with respecto to R3 values
+			#Pulse Y per Pulse X
+			Period X [usec]
+			Period Y  [usec]
+			Interruption Period  [usec]
+			#Interruptions per Pulse Y
+			Length Interruption [usec]
+
+		For files with XY:
+			1- Large positive slope
+			- Speed 100
+			- Speed 50
+
+			2- Large negative slope
+			- Speed 100
+			- Speed 50
+
+	- OK: Check Step Pulse width
+	- Check Limit pins
+	- Check Control pins
+	- Test Servo
+
+	Testing:
+		- XY Large positive
+		- Commented out any reference to Probe / Coolant
+		- Updating AMASS cutoff level for CPU: 48MHz
+		- step_pulse_stop = false; at Pulse stop function
+		- Commented out Stopping of timer when changing the Period
+		- Added Test signals
+		- Disabled Limit & Control AGT1 Interruption
+
+
+----------------------------------------
+Version: R4 GRBL 0.680
+
+Date:	11/07/2026
+Author: Jose Luis Gomez Costa
+
+	- TODO:
+		- system.cpp:
+			Line 331:  TODO: correct for 8 bit/16bit registers
+
+		- Enable Probe and Coolant
+			functions commented out when referenced:
+				void probe_state_monitor()
+				uint8_t probe_get_state()
+				void probe_init()
+
+				void coolant_init()
+				void coolant_stop()
+				void coolant_set_state(uint8_t mode)
+				void coolant_run(uint8_t mode)
+
+
+Test process:
+	- OK: Verify / Update Parameters from R3 to R4
+
+	- Check R4 compliance with respecto to R3 values
+			#Pulse Y per Pulse X
+			Period X [usec]
+			Period Y  [usec]
+			Interruption Period  [usec]
+			#Interruptions per Pulse Y
+			Length Interruption [usec]
+
+		For files with XY:
+			1- Large positive slope
+			- Speed 100
+			- Speed 50
+
+			2- Large negative slope
+			- Speed 100
+			- Speed 50
+
+	- OK: Check Step Pulse width
+	- Check Limit pins
+	- Check Control pins
+	- Test Servo
+
+	Testing:
+		- XY Large positive
+		- Commented out any reference to Probe / Coolant
+		- Updating AMASS cutoff level for CPU: 48MHz
+		- step_pulse_stop = false; at Pulse stop function
+		- Commented out Stopping of timer when changing the Period
+		- Added Test signals
+		- Disabled Limit & Control AGT1 Interruption
+		- All memories / calculations for direction/Step pins are 16bits
+		- step_invert_mask dir_invert_mask : 16 bits
+		- direction_bits : 16 bits
+		- Serial TX buffer: 1000
+		- Enabled Stopping of timer when changing the Period
+		- TEST_2: TX Interruption
+
+----------------------------------------
+Version: R4 GRBL 0.700
+
+Date:	12/07/2026
+Author: Jose Luis Gomez Costa
+
+	Added posibility of using Hardware debugger, in that case:
+		Mode:
+			If Normal mode is used:
+			SCI 9: Program communication
+			SCI 2: Not used
+
+			If Debug mode is used:
+			SCI 9: Debug exchange with IDE
+			SCI 2: Program communication
+		Selection is made in lib/common/include/debug.have
+
+----------------------------------------
+Version: R4 GRBL 0.750
+
+Date:	14/07/2026
+Author: Jose Luis Gomez Costa
+
+	#define COREXY: uncomented
+
+----------------------------------------
+Version: R4 GRBL 0.800
+
+Date:	14/07/2026
+Author: Jose Luis Gomez Costa
+
+	Parameter definitions:
+		- For generating normal reports to UGS: $10 = 3    (status report mask:00000011)
+
+	To be checked:
+		UGS: Manual mouvements
+			Set +X -> Moves +X
+			Set +Y -> Moves +X?
+
+			Set -Y -> Moves -Y
+			Set -X -> Moves -Y?
+
+			Set +Z -> Moves +Z
+			Set -Z -> Moves +Z?
+
+----------------------------------------
+Version: R4 GRBL 0.807
+
+Date:	15/07/2026
+Author: Jose Luis Gomez Costa
+
+	DEBUG + Serial SCI2
+		- void serial_init(): PSEL code for SCI9 and SCI2 are different
+
+	To be checked:
+		Reset to 0: G10P0L20X0Y0Z0 does not seem to work
+		MPos / WPos can not be cleared
+		[G54:10.000,20.000,10.000] whils in R3 are ALL 0
+			Set as: G10P0L20X0Y0Z0
+
+		UGS: Manual mouvements
+			Set +X -> Moves +X
+			Set +Y -> Moves +X?
+
+			Set -Y -> Moves -Y
+			Set -X -> Moves -Y?
+
+			Set +Z -> Moves +Z
+			Set -Z -> Moves +Z?
+
+	- config.h:
+		Uncomment: #define REPORT_ECHO_LINE_RECEIVED // Default disabled. Uncomment to enable.
+		Nothing to extract.
+
+----------------------------------------
+Version: R4 GRBL 0.810
+
+Date:	16/07/2026
+Author: Jose Luis Gomez Costa
+
+	planner.cpp/h
+		typedef struct { } plan_block_t : block->direction_bits must be unit16 bits, not 8 bits
+		This created the wrong settings for Motor Direction and Reports.
+
+	To be checked:
+		Uncomment Probe
+		Uncomment Limits
+		Uncomment Controls
+		Uncomment Coolant
+		Test Pencil-Spindle
+
+		Some times:
+			- The Step-clear interruption is not executed, the Step pulse is cleared in the next interruption.
+			- UGCodeSender JogController seems to block CPU
+
+----------------------------------------
+Version: R4 GRBL 0.820
+
+Date:	16/07/2026
+Author: Jose Luis Gomez Costa
+
+	To be checked:
+		Probe
+		Limits
+		Controls
+		Coolant
+		Pencil-Spindle
+
+		Some times:
+			- The Step-clear interruption is not executed, the Step pulse is cleared in the next interruption.
+			- UGCodeSender JogController seems to block CPU
+
+	Testing:
+		Disabled //Test start ... // Test End
+			Probe
+			Coolant
+			Pencil-Spindle
+
+		Limits:
+			LimitX/Y: not working
+
+----------------------------------------
+Version: R4 GRBL 0.820
+
+Date:	16/07/2026
+Author: Jose Luis Gomez Costa
+
+	To be checked:
+		Probe
+		Limits
+		Controls
+		Coolant
+		Pencil-Spindle
+
+		Some times:
+			- The Step-clear interruption is not executed, the Step pulse is cleared in the next interruption.
+			- UGCodeSender JogController seems to block CPU
+
+	Testing:
+		Disabled //Test start ... // Test End
+			Probe
+			Coolant
+			Pencil-Spindle
+
+		Limits:
+			LimitX/Y: not working
+			Pull-up not correctly defined on all pins
+
+----------------------------------------
+Version: R4 GRBL 0.830
+
+Date:	18/07/2026
+Author: Jose Luis Gomez Costa
+
+	To be checked:
+		Probe
+		Limits
+		Controls
+		Coolant
+		Pencil-Spindle
+
+		Some times:
+			- The Step-clear interruption is not executed, the Step pulse is cleared in the next interruption.
+			- UGCodeSender JogController seems to block CPU
+
+	Testing:
+		Disabled //Test start ... // Test End
+			Probe
+			Coolant
+			Pencil-Spindle
+
+		Limits:
+			LimitX/Y: working? but no indication is sent to the UGCodeSender
+			R3: RED ALARM banner, message: An unexpected error was detected: ALARM: Hard limit
+			R4: no more pulses, but keep stuck
+				but, when resetting, following broken message appears: An unexpected error was detected: ALARM: [
+			Added __NOP() in void protocol_execute_realtime(): Interruptions not executed?
+			Eliminated: uint8_t get_limit_pin_mask(uint8_t axis_idx)
+
+----------------------------------------
+Version: R4 GRBL 0.833
+
+Date:	19/07/2026
+Author: Jose Luis Gomez Costa
+
+	To be checked:
+		Probe
+		Limits
+		Controls
+		Coolant
+		Pencil-Spindle
+
+		Some times:
+			- The Step-clear interruption is not executed, the Step pulse is cleared in the next interruption.
+			- UGCodeSender JogController seems to block CPU
+
+	Limit tests:
+		void protocol_execute_realtime(), uncommented part of       } while (bit_isfalse(sys.rt_exec_state,EXEC_RESET));
+	 	Action is almost corrrect: detected Alarm as in R3, only message is not quite correct:
+	 		An unexpected error was detected: ALARM: [<Alarm,MPos:15.980,0.000,0.000,WPos:15.980,0.000,0.000>
+		Although it is COMMENTED OUT in R3??
+
+		#define LIMIT_CONTROL_ISR_PERIOD_US (5000) instead of (1000)
+
+----------------------------------------
+Version: R4 GRBL 0.850
+
+Date:	19/07/2026
+Author: Jose Luis Gomez Costa
+
+	To be checked:
+		Probe
+		Limits
+		Controls
+		Coolant
+		Pencil-Spindle
+
+		Some times:
+			- The Step-clear interruption is not executed, the Step pulse is cleared in the next interruption.
+			- UGCodeSender JogController seems to block CPU
+
+	Limit tests:
+		All modules retourned to its R3 general steps.
+		The problem seemd to come form the fact that the Serial transfer of report_alarm_message() was divided in 3 distinct transfers?
+		Now all message is sent in one go.
+
+----------------------------------------
+Version: R4 GRBL 0.860
+
+Date:	19/07/2026
+Author: Jose Luis Gomez Costa
+
+	To be checked:
+		Limits
+			X (D9) OK
+			Y (D10) OK
+			Z (D12) OK
+		Controls
+			Abort (A0) OK
+			Feed Hold(A1) OK
+			Resume (A2) OK
+			E-Stop (Analog Pin3) OK
+
+		Probe
+		Coolant
+		Pencil-Spindle
+
+		Some times:
+			- The Step-clear interruption is not executed, the Step pulse is cleared in the next interruption.
+			- UGCodeSender JogController seems to block CPU
+
+----------------------------------------
+Version: R4 GRBL 0.870
+
+Date:	19/07/2026
+Author: Jose Luis Gomez Costa
+
+	To be checked:
+		Pencil-Spindle
+			Z: +1	OK
+			Z: -1	OK
+		Probe
+			Only enable and then check that all works OK
+		Coolant
+			Only enable and then check that all works OK
+
+
+		Some times:
+			- The Step-clear interruption is not executed, the Step pulse is cleared in the next interruption.
+			- UGCodeSender JogController seems to block CPU
+
+----------------------------------------
+Version: R4 GRBL 0.875
+
+Date:	19/07/2026
+Author: Jose Luis Gomez Costa
+
+	To be checked:
+		Probe OK
+			Enabled, then check that all works OK
+
+		Coolant
+			Only enable and then check that all works OK
+
+
+		Some times:
+			- The Step-clear interruption is not executed, the Step pulse is cleared in the next interruption.
+			- UGCodeSender JogController seems to block CPU
+
+----------------------------------------
+Version: R4 GRBL 0.880
+
+Date:	19/07/2026
+Author: Jose Luis Gomez Costa
+
+	To be checked:
+		Coolant OK
+			Enabled. Check that all works OK
+
+		Delay Direction-Step
+
+	Some times:
+		- The Step-clear interruption is not executed, the Step pulse is cleared in the next interruption.
+		- UGCodeSender JogController seems to block CPU
+
+----------------------------------------
+Version: R4 GRBL 0.890
+
+Date:	19/07/2026
+Author: Jose Luis Gomez Costa
+
+	To be checked:
+		Delay Direction-Step
+
+	Some times:
+		- The Step-clear interruption is not executed, the Step pulse is cleared in the next interruption.
+		- UGCodeSender JogController seems to block CPU
+
+----------------------------------------
+Version: R4 GRBL 0.897
+
+Date:	20/07/2026
+Author: Jose Luis Gomez Costa
+
+	Being checked:
+		Delay Direction-Step
+		Wrongly defined: uint8_t step_bits -> uint16_t step_bits
+		Completely wrong timing for all Motor ISR interruptions, to be checked the Register definitions
+
+		Added TEST_1/2 blocked Cooling/Probe
+
+
+	To be checked:
+		- The Step-clear interruption is not executed, the Step pulse is cleared in the next interruption.
+		- UGCodeSender JogController seems to block CPU
+
+----------------------------------------
+Version: R4 GRBL 0.902
+
+Date:	23/07/2026
+Author: Jose Luis Gomez Costa
+
+	Being checked:
+		Delay Direction-Step
+		Wrongly defined: uint8_t step_bits -> uint16_t step_bits
+		When sending data, wrongly reading PODR rather than PIDR
+		wrong timing: Problem comes form the fact that the TestPoint is not correctly stored between creation and CMPA access
+
+		Added TEST_1/2 blocked Cooling/Probe
+
+
+	To be checked:
+		- The Step-clear interruption is not executed, the Step pulse is cleared in the next interruption.
+		- UGCodeSender JogController seems to block CPU
+
+----------------------------------------
+Version: R4 GRBL 0.903
+
+Date:	23/07/2026
+Author: Jose Luis Gomez Costa
+
+	To be checked:
+		- Motor ISR sometimes are longuer than normally:
+			- Is due to AGT1 interruption?
+		- The Step-clear interruption is not executed, the Step pulse is cleared in the next interruption.
+		- UGCodeSender JogController seems to block CPU
+
+----------------------------------------
+Version: R4 GRBL 0.910
+
+Date:	23/07/2026
+Author: Jose Luis Gomez Costa
+
+	Being checked:
+		- Motor ISR sometimes are longuer than normally:
+			- Is due to AGT1 interruption?
+			Main ISR: TET_3
+			Delay/Pulse end: TEST_1
+			AGT1: TEST_2
+
+	To be checked:
+		- The Step-clear interruption is not executed, the Step pulse is cleared in the next interruption.
+		- UGCodeSender JogController seems to block CPU
+
+----------------------------------------
+Version: R4 GRBL 0.913
+
+Date:	23/07/2026
+Author: Jose Luis Gomez Costa
+
+	Being checked:
+		- Motor ISR sometimes are longuer than normally:
+			- Is due to AGT1 interruption?
+			Main ISR: TET_3
+			Delay/Pulse end: TEST_1
+			AGT1: TEST_2
+			Re-enable interruptions inside ISR AGT1
+			Changed Interruption Priorities: OK
+
+	To be checked:
+		- The Step-clear interruption is not executed, the Step pulse is cleared in the next interruption.
+		- UGCodeSender JogController seems to block CPU
+
+----------------------------------------
+Version: R4 GRBL 0.916
+
+Date:	23/07/2026
+Author: Jose Luis Gomez Costa
+
+	Being checked:
+		- The Step-clear interruption is not executed, the Step pulse is cleared in the next interruption.
+		Giving higher priorities to Step Pulse seems to have solved the problem
+
+	To be checked:
+		- UGCodeSender JogController seems to block CPU
+
+----------------------------------------
+Version: R4 GRBL 0.920
+
+Date:	24/07/2026
+Author: Jose Luis Gomez Costa
+
+	To be checked:
+		- UGCodeSender JogController seems to block CPU
+
+----------------------------------------
+Version: R4 GRBL 0.925
+
+Date:	25/07/2026
+Author: Jose Luis Gomez Costa
+
+	Testing Step Pulse width for checking too wide-short pulses:OK
+
+	To be checked:
+		- UGCodeSender JogController seems to block CPU
+
+
+----------------------------------------
+Version: R4 GRBL 0.930
+
+Date:	26/07/2026
+Author: Jose Luis Gomez Costa
+
+	Comparing Speed period with R3. No Delay
+
+	To be checked:
+		- UGCodeSender JogController seems to block CPU
+
+----------------------------------------
+Version: R4 GRBL 0.935
+
+Date:	26/07/2026
+Author: Jose Luis Gomez Costa
+
+	Comparing Speed period with R3. No Delay:
+		- 5 Times too slow compared to R3
+		- Test:
+			stepper.cpp Keep AMAS level as for R3
+
+	To be checked:
+		- UGCodeSender JogController seems to block CPU
+
+----------------------------------------
+Version: R4 GRBL 0.936
+
+Date:	27/07/2026
+Author: Jose Luis Gomez Costa
+
+	Comparing Speed period with R3. No Delay:
+		- 5 Times too slow compared to R3
+		- Test:
+			stepper.cpp Keep AMAS level as for R3. Not OK
+
+	Testing: OK
+		- UGCodeSender JogController seems to block CPU
+
+----------------------------------------
+Version: R4 GRBL 0.938
+
+Date:	27/07/2026
+Author: Jose Luis Gomez Costa
+
+	Comparing Speed period with R3. No Delay:
+		- 5 Times too slow compared to R3
+		- Test:
+			- stepper.cpp No OK
+				Keep AMAS level as for R3
+			- stepper.cpp
+				Update AMASS_LEVELx (F_CPU * 3)/(x)) 48MHz = 16MHz * 3
+				void st_prep_buffer():
+					Manual correction of the MainISR Period: %/5
+					      prep_segment->cycles_per_tick = cycles * 0.2; // Period / 5
+
+	Testing: OK
+		- UGCodeSender JogController seems to block CPU:  OK
+
+----------------------------------------
+Version: R4 GRBL 0.940
+
+Date:	27/07/2026
+Author: Jose Luis Gomez Costa
+
+	Comparing Speed period with R3. No Delay:
+		- 5 Times too slow compared to R3
+		- Test:
+			- stepper.cpp
+				Update AMASS_LEVELx (F_CPU * 3)/(x)) 48MHz = 16MHz * 3
+				void st_prep_buffer():
+					Manual correction of the MainISR Period: % by 5
+					      prep_segment->cycles_per_tick = cycles * 0.2; // Period / 5
+
+----------------------------------------
+Version: R4 GRBL 0.950
+
+Date:	27/07/2026
+Author: Jose Luis Gomez Costa
+
+	- SCI Debug parameters to debug_cpu_r7fa4m1ab.h in GRBL include
+		- Disable CPU Debug: OK (SCI-9)
+	- Comment out use of Test1/2 pins: OK (Probe/Coolant enabled)
+
+	- Compare Speed period with R3. No Delay:
+		- X / Y (Fxx)
+			- 10000 / 15000
+				- F50
+				- F100
+			-10000 / 20000
+				- F50
+				- F100
+
+----------------------------------------
+Version: R4 GRBL 0.952
+
+Date:	27/07/2026
+Author: Jose Luis Gomez Costa
+
+	All test OK.
+	Check with Table XY
+
+----------------------------------------
+Version: R4 GRBL 0.960
+
+Date:	07/08/2026
+Author: Jose Luis Gomez Costa
+
+	Corrected Servo Pencil PWM values
+		spindle_control.h
+		cpu_map_r7fa4m1ab.h
+
+	Not Correct, fcn_servo_time_high(angle) must be differently calculated when Inverted and when not
+
+----------------------------------------
+Version: R4 GRBL 0.962
+
+Date:	10/08/2026
+Author: Jose Luis Gomez Costa
+
+	Corrected Servo Pencil PWM values
+		spindle_control.h
+		cpu_map_r7fa4m1ab.h
+
+	Not Correct, fcn_servo_time_high(angle) must be differently calculated when Inverted and when not
+	Not finished
+
+----------------------------------------
+Version: R4 GRBL 0.963
+
+Date:	10/08/2026
+Author: Jose Luis Gomez Costa
+
+	Corrected Servo Pencil PWM values
+		spindle_control.h
+		cpu_map_r7fa4m1ab.h
+
+	Testing
+
+----------------------------------------
+Version: R4 GRBL 0.965
+
+Date:	10/08/2026
+Author: Jose Luis Gomez Costa
+
+	Checking $P Menu outcome
+		- lib/../debug_cpu_r7fa4m1ab.h
+			Debugging option: #define SCI_MODE_DEBUG YES
+
+----------------------------------------
+Version: R4 GRBL 0.967
+
+Date:	10/08/2026
+Author: Jose Luis Gomez Costa
+
+	$P Menu outcome
+		- It works when using SCI auxiliar
+		- Re-check with standard USB:
+			Error is generated
+			$A is also blocking?
+		- check with Debug
+
+----------------------------------------
+Version: R4 GRBL 0.968
+
+Date:	10/08/2026
+Author: Jose Luis Gomez Costa
+
+	$P/$I Menu outcome
+		Respective Build Info are defines, do not store in EEPORM
+
+	Testing $A: in process
+		Registers MUST be set as 1/2/4 bytes
+		Do NOT print more than one Register
+
+----------------------------------------
+Version: R4 GRBL 0.970
+
+Date:	11/08/2026
+Author: Jose Luis Gomez Costa
+
+	Testing $A: deprecated
+		As Registers can be 8/16/32 bits, too complicated to select, prone to memory access errors
+		Instead, $A will return the data of an array of 10 * 32 bits.
+			- Array name: debug_data
+		 	- it can be filled with the desired data at specific positions under program Control
+			- User program must control the filling process, access storage, etc.
+
+----------------------------------------
+Version: R4 GRBL 0.971
+
+Date:	11/08/2026
+Author: Jose Luis Gomez Costa
+
+	Commented out: Debugging option: #define SCI_MODE_DEBUG YES
+
+----------------------------------------
+Version: R4 GRBL 0.972
+
+Date:	11/08/2026
+Author: Jose Luis Gomez Costa
+
+	The Menu answer to $P, MUST be enclosed between [], Othewrise errors are generated at receiving program UGS
+
+----------------------------------------
+Version: R4 GRBL 0.973
+
+Date:	11/08/2026
+Author: Jose Luis Gomez Costa
+
+	debug_data array length is defined in system.h:
+		#define DEBUG_DATA_ARRAY_LENGTH
+
+----------------------------------------
+Version: R4 GRBL 0.974
+
+Date:	12/08/2026
+Author: Jose Luis Gomez Costa
+
+	Only the files actually modified by me are marqued with my Copyright
+
+----------------------------------------
+Version: R4 GRBL 0.975
+
+Date:	20/08/2026
+Author: Jose Luis Gomez Costa
+
+	Minimum text in comments
+
+----------------------------------------
+Version: R4 GRBL 0.976
+
+Date:	20/08/2026
+Author: Jose Luis Gomez Costa
+
+	To be checked: M5 generates a 330ns pulse -> this might destroy the servo?
+	Wrong setting for Maximum / Minimum Angle.
+	It depends on Servo:
+		- SM_S2309S: +/- 60deg (900 to 2100 useg)
+		- SG90: +/- 90 deg (2 to 1 msec)
+
+	Therefore Pencil (Spindle) is completely refurbished:
+		M3/M4: Pencil Down. M3Sxx Sxx is discarded, PWM value is fixed
+		M5: Pencil Up.PWM value is fixed
+
+----------------------------------------
+Version: R4 GRBL 0.977
+
+Date:	21/08/2026
+Author: Jose Luis Gomez Costa
+
+	Testing Servo
+	Modification in #defines names
+
+
+----------------------------------------
+Version: R4 GRBL 0.978
+
+Date:	27/08/2026
+Author: Jose Luis Gomez Costa
+
+	Testing Servo:
+		Servo movement: 90deg
