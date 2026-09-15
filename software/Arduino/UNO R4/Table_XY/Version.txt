@@ -1198,3 +1198,13 @@ Author: Jose Luis Gomez Costa
 
 	Testing Servo:
 		Servo movement: 90deg
+
+----------------------------------------
+Version: R4 GRBL 0.979
+
+Date:	31/08/2026
+Author: Jose Luis Gomez Costa
+
+	Testing Servo:
+		Servo movement: 90deg
+		Not Inverted
