@@ -19,17 +19,33 @@
   You should have received a copy of the GNU General Public License
   along with Grbl.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-// Servo Hardware:
-
-// Servo Period
-#define SERVO_PULSE_FREQ_HZ 50
-#define SERVO_MAX_COUNTER     (SERVO_COUNTER_CLOCK / SERVO_PULSE_FREQ_HZ)   // value = (F_CPU/16) * desired_period
-
+//-----------------------------------------------------------------------
+// Servo Hardware SM_S2309S
+/*
 // Servo Pulse value High
+#define RC_SERVO_INVERT     1     // Comment out for NOT Inverting servo direction
+
 #define SERVO_PULSE_HIGH_US_MIN (700)
 #define SERVO_PULSE_HIGH_US_MAX (1250)
 // #define SERVO_PULSE_HIGH_US_MAX (2500)
+#define SERVO_PULSE_FREQ_HZ 50
+*/
+
+//-----------------------------------------------------------------------
+// Servo Hardware SG92R
+
+// Servo Pulse value High
+// #define RC_SERVO_INVERT     1     // Comment out for NOT Inverting servo direction
+
+#define SERVO_PULSE_HIGH_US_MIN (700)
+#define SERVO_PULSE_HIGH_US_MAX (1250)
+// #define SERVO_PULSE_HIGH_US_MAX (2500)
+
+#define SERVO_PULSE_FREQ_HZ 50
+//-----------------------------------------------------------------------
+
+// Servo Period
+#define SERVO_MAX_COUNTER     (SERVO_COUNTER_CLOCK / SERVO_PULSE_FREQ_HZ)   // value = (F_CPU/16) * desired_period
 
 // PWM counter
 #define PWM_COUNTER_MIN (SERVO_COUNTER_CLOCK_MZ * SERVO_PULSE_HIGH_US_MIN)

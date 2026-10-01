@@ -28,8 +28,6 @@
 
 #include "grbl.h"
 
-// #define RC_SERVO_INVERT     1     // Comment out for NOT Inverting servo direction
-
 
 void spindle_init()
 {

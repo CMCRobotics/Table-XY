@@ -1208,3 +1208,19 @@ Author: Jose Luis Gomez Costa
 	Testing Servo:
 		Servo movement: 90deg
 		Not Inverted
+
+----------------------------------------
+Version: R4 GRBL 0.980
+
+Date:	01/10/2026
+Author: Jose Luis Gomez Costa
+
+	spindle_control.cpp
+		Transfered to spindle_control.h #define RC_SERVO_INVERT
+
+	Spindle parameters:
+		Adapted to specific Servo
+		Added Servo for SG92R:
+			Servo movement: 90deg
+			Inverted
+
