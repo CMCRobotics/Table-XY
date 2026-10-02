@@ -23,11 +23,12 @@
 // Servo Hardware SM_S2309S
 /*
 // Servo Pulse value High
-#define RC_SERVO_INVERT     1     // Comment out for NOT Inverting servo direction
+#define RC_SERVO_INVERT     true     // Invert
 
 #define SERVO_PULSE_HIGH_US_MIN (700)
 #define SERVO_PULSE_HIGH_US_MAX (1250)
 // #define SERVO_PULSE_HIGH_US_MAX (2500)
+
 #define SERVO_PULSE_FREQ_HZ 50
 */
 
@@ -35,13 +36,13 @@
 // Servo Hardware SG92R
 
 // Servo Pulse value High
-// #define RC_SERVO_INVERT     1     // Comment out for NOT Inverting servo direction
+#define RC_SERVO_INVERT     true     // Invert
 
-#define SERVO_PULSE_HIGH_US_MIN (700)
-#define SERVO_PULSE_HIGH_US_MAX (1250)
-// #define SERVO_PULSE_HIGH_US_MAX (2500)
+#define SERVO_PULSE_HIGH_US_MIN (640)
+// #define SERVO_PULSE_HIGH_US_MAX (2430)   // 180 deg
+#define SERVO_PULSE_HIGH_US_MAX (1615)      // 90 deg
 
-#define SERVO_PULSE_FREQ_HZ 50
+#define SERVO_PULSE_FREQ_HZ 60
 //-----------------------------------------------------------------------
 
 // Servo Period

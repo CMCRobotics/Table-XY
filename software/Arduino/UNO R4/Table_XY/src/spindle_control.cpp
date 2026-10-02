@@ -114,11 +114,11 @@ void spindle_run(uint8_t direction, float rpm)
 
     GPT_REG_WRITE_ENABLE(R_GPT6);
 
-    #ifdef RC_SERVO_INVERT
+    if(RC_SERVO_INVERT){
       SERVO_REGISTER_VALUE = PWM_COUNTER_MIN;
-    #else
+    }else{
       SERVO_REGISTER_VALUE = PWM_COUNTER_MAX;
-    #endif
+    }
 
     GPT_REG_WRITE_DISABLE(R_GPT6);
 
@@ -132,11 +132,11 @@ void spindle_stop()
 
 GPT_REG_WRITE_ENABLE(R_GPT6);
 
-#ifdef RC_SERVO_INVERT
+if(RC_SERVO_INVERT){
   SERVO_REGISTER_VALUE = PWM_COUNTER_MAX;
-#else
+}else{
   SERVO_REGISTER_VALUE = PWM_COUNTER_MIN;
-#endif
+}
 
 GPT_REG_WRITE_DISABLE(R_GPT6);
 

@@ -1224,3 +1224,20 @@ Author: Jose Luis Gomez Costa
 			Servo movement: 90deg
 			Inverted
 
+----------------------------------------
+Version: R4 GRBL 0.981
+
+Date:	02/10/2026
+Author: Jose Luis Gomez Costa
+
+	spindle_control.h/cpp:
+		#define RC_SERVO_INVERT: transformed to boolean true/false
+	
+	spindle_control.h:
+		Spindle parameters Servo SG92R:
+			Servo Freq: 60hz
+			M5 pulse: 640 usec
+			M03 S85 pulse:	2431 usec	GCODE_PENCIL_DOWN
+			M03 S00 pulse:	640	 usec	GCODE_PENCIL_UP
+
+			Not Inverted
