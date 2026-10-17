@@ -35,7 +35,12 @@ GRBL 0.9 https://github.com/grbl/grbl/wiki/Configuring-Grbl-v0.9
 
 Pilot CNC via GCode with Arduino: https://letmeknow.fr/fr/blog/110-tuto-piloter-une-cnc-avec-arduino-et-grbl
 
-
+https://honingmill.fandom.com/wiki/Configuring_Grbl_v0.9
+	Description of 0.9i parameters
+	
+https://github.com/gnea/grbl/blob/master/doc/markdown/interface.md
+	Description of Serial protocol with GUI
+	
 ---------------------------------------------------------------------------
 Documents on M et G Code:
 	http://fr.insta3dp.com/info/3d-printer-g-code-commands-full-list-tutori-79272752.html
