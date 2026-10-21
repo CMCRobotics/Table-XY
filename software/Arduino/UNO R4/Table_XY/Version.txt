@@ -1268,3 +1268,13 @@ Author: Jose Luis Gomez Costa
 	Limits/Control re-Enabled
 	
 
+----------------------------------------
+Version: R4 GRBL 1.00
+
+Date:	21/10/2026
+Author: Jose Luis Gomez Costa
+
+	Disabled:
+		- TestPoints, except ISR Motor
+		- Debug Serial port 
+

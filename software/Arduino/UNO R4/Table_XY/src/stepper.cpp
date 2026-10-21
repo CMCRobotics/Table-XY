@@ -256,7 +256,7 @@ void st_go_idle()
   if (((settings.stepper_idle_lock_time != 0xff) || sys.rt_exec_alarm) && sys.state != STATE_HOMING) {
 
     //----------------------------------------
-    TEST_2_SET;
+    // TEST_2_SET;
     //----------------------------------------
     
     // Force stepper dwell to lock axes for a defined amount of time to ensure the axes come to a complete
@@ -333,7 +333,7 @@ void ISRinterrupt_Motor_Main(void){
 
   //-------------------------------------------------------------------------
   TEST_3_CLR; // Debug: Used to time ISR
-  TEST_2_CLR;
+  // TEST_2_CLR;
   //-------------------------------------------------------------------------
 }
 

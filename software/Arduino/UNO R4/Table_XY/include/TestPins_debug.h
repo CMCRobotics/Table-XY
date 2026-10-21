@@ -25,13 +25,6 @@ TEST 1: A4
 TEST 2: A5
 TEST 3: D13
 
-Definitions for Test Points
-TP  Set                         Clear                           Description
-0   Motor Pulse
-1   serial_write                End of Serial TX ISR            Sending of string
-2   st_go_idle()                End of ISRinterrupt_Motor_Main  25msec access??
-3   ISRinterrupt_Motor_Main     End of ISRinterrupt_Motor_Main  ISR Motor
-
 */
 
 //--------------------------------------------------------------------------------------
@@ -50,9 +43,9 @@ TP  Set                         Clear                           Description
 
 #include <Arduino.h>
 
-#define DEBUG_TEST_0 YES		// comment out for standard operation
-#define DEBUG_TEST_1 YES		// comment out for standard operation
-#define DEBUG_TEST_2 YES		// comment out for standard operation
+// #define DEBUG_TEST_0 YES		// comment out for standard operation
+// #define DEBUG_TEST_1 YES		// comment out for standard operation
+// #define DEBUG_TEST_2 YES		// comment out for standard operation
 
 //--------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------
