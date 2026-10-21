@@ -6,8 +6,11 @@ This software is the conversion of [GRBL version 0.9i](https://github.com/misan/
 Therefore it is only applied for Printer 2D-CNC systems like the one detailed in [4xiDraw](https://www.instructables.com/4xiDraw) .  
 Even-though the development is done for that type of Printer, spindle functions can be modified for a standard PWM Spindle controller.
 
-Refer to the links for a detailed description of GRBL-Servo or GRBL itself.
+Refer to the links for a detailed description of GRBL-Servo or GRBL itself.  
+- GRBL [Version 0.9 parameter description](https://honingmill.fandom.com/wiki/Configuring_Grbl_v0.9)  
+- Interface GRBL to Computer [GUI](https://github.com/gnea/grbl/blob/master/doc/markdown/interface.md)  
 
+  
 This document will only deal with the specificities of the conversion.
 
 You are assumed to be proficient in GRBL.  
@@ -32,9 +35,9 @@ See GitHub **Issues** for a list of existing issues.
 
 ### Pencil Servo control
 Pencil UP and Down movements are controlled with a simple Servo Motor.  
-Depending on the Servo used, it may be required to adjust the angle and the sense of movement: CW or CCW (i.e. inversion).  
+Depending on the Servo used, it may be required to adjust the angle and the sense of movement: CW or CCW (i.e. make an inversion).  
 Servo is PWM controlled, with High pulse defining the angle moved.  
-Depending on the Printer structure and the Servo type, it could be required to adapt the parameters.  
+Depending on the Printer structure and the Servo type, it could be required to adapt the parameters defined in the Arduino program.  
 <br>
 Parameters are defined in the following include file
 
@@ -57,13 +60,13 @@ Parameters for movement of the Servo (therefore the pencil)
 
 **SERVO_PULSE_FREQ_HZ**: PWM frequency  
 
-            50 Hz  			
-**SERVO_PULSE_HIGH_US_MIN**: PWM pin high value, minimum  
+		50 Hz  			
+**SERVO_PULSE_HIGH_US_MIN**: PWM pin high value, minimum PWM pulse length  
 
-			700 usec.  PWM duty cycle: 3.5%  
-**SERVO_PULSE_HIGH_US_MIN**: PWM pin high value, maximum  
+		700 usec.  PWM duty cycle: 3.5%  
+**SERVO_PULSE_HIGH_US_MIN**: PWM pin high value, maximum PWM pulse length  
 
-			1250 usec.  PWM duty cycle: 6.25%
+		1250 usec.  PWM duty cycle: 6.25%
 
 Those values are for servo SG92R. 
 <br>
@@ -71,17 +74,17 @@ Those values are for servo SG92R.
 SERVO_PULSE_xxx and RC_SERVO_INVERT will define which movement will be done for moving Up or Down the pencil.  
 <br>
 ### Renesas Peripherals in Arduino Uno R4
-Even-though the name of the card Arduino Uno R3 and Arduino Uno R4 might imply a backwards compatibility in both software/hardware, **only** at hardware level this is true.  
+Even-though the name of the card Arduino Uno R3 and Arduino Uno R4 might imply a backwards compatibility in both software/hardware, **only** at card connector hardware level this is true.  
 
-Both controllers are completely different, therefore porting from one to another implies a complete re-coding of all the hardware related parts: EEPROM, PWM, Timers, interruptions, etc.  
+Both controllers are completely different, therefore porting a program from one to another implies a complete re-coding of all the hardware related parts: EEPROM, PWM, Timers, interruptions, etc.  
 <br>
 
 #### Motor Control
 Main motor control interrupt is managed by **GPT Timer 0 32bits**
 
-**Main Step pulse frequency**: Overflow interruption  
-**Delay Direction to step pulse**: If enabled, COMP-A interruption  
-**Step Pulse clear**: COMP-B interruption  
+**Main Motor Step pulse frequency**: GPT Overflow interruption  
+**Delay Direction to Motor step pulse**: If enabled, GPT COMP-A interruption  
+**Motor Step Pulse clear**: GPT COMP-B interruption  
 <br>
 
 
@@ -122,12 +125,12 @@ Limit and Control inputs are checked every msec, called by an Interruption gener
  
 	Initialisation of timer
 	
-	ISRinterrupt_AGT1(): pin control
+	ISRinterrupt_AGT1(): pin check control
 	
  ```
  <br>
  
-Every input signal is checked to be kept Active[Not active] at least a defined minimum time before being declared as Active[Not active] and then behaviour follows the same sequence as in the original R3 program.  
+Every input signal is checked to be kept Active[Not active] at least a defined minimum time before being declared as Active[Not active] and then the behaviour follows the same sequence as in the original R3 program.  
 <br>
 
 #### EEPROM
@@ -140,10 +143,10 @@ Read/Write is made for 1024 bytes.
 
 ## GCode creation for Pencil Up/Down movement
 
-For not having to make too complex the task of modifying the GCode for adding the feature of Pencil Up/Down, the following procedure has been defined.
+For not having to make too complex the task of modifying the GCode for adding Pencil Up/Down feature, the following procedure has been defined.
 
 1. *Creating your GCode*:
-	- This program is adapted for a 2D printing
+	- You can use any program adapted for a 2D printing
 	- No parsing of GCode created with any design program is required.
 	- No specific design program is defined, nor special plug-ins to be added. Any design program is used as it is.
 	- When designing your print, you will define:
@@ -152,12 +155,12 @@ For not having to make too complex the task of modifying the GCode for adding th
 		- **S parameter**: if added to the Z movement, it will be ignored by the R4 program
 	- GCode is completely standard, as generated by the design program.
 2. *Execution at R4 controller*
-	- When GCode is transferred to the Arduino controller and it is executed
+	- When GCode is transferred to the Arduino controller and is executed
 	- Every GCode command line is parsed to look for **Z** related command
 	- If found, it is replaced by a corresponding new GCode command:
 		- *Z < 0*: Pencil Down, command executed: **M03S00**
 		- *Z > 0*: Pencil Up, command executed: **M05**
-	- If not, original command line is executed unmodified
+	- Original command line is executed unmodified, stripped from any Z related command
 <br>
 <br>	
 
@@ -248,6 +251,8 @@ Some of the Test points collide with CNC use.
 <br>
 
 - Analog connector
+	- Pin 12: Analog3  
+		Selectable as *Test0* or *Coolant Enable*
 	- Pin 13: Analog4  
 		Selectable as *Test1* or *Coolant Mist*
 	- Pin 14: Analog5  
@@ -260,15 +265,16 @@ Some of the Test points collide with CNC use.
 <br>
 	
 ```Test points
-include/TestPins_1_2_debug.h
-	Sets TEST1 / TEST2 as Test points or normal
+include/TestPins_debug.h
+	Sets TEST0 / 1 / 2 as Test points or normal
 	
+	// #define DEBUG_TEST_0 YES		// comment out for standard operation
 	// #define DEBUG_TEST_1 YES		// comment out for standard operation
 	// #define DEBUG_TEST_2 YES		// comment out for standard operation
 	
 ```
 <br>
-If TEST1 and/or TEST2 are enabled, the program automatically disconnects *Coolant* and/or *Probe* features, and define as output pins.
+If TEST 0/1/2 are enabled, the program automatically disconnects *Coolant* and/or *Probe* features, and define them as output pins.
 
 You must add pertaining code to the desired points, using the following defined macros:  
 <br>
@@ -278,7 +284,7 @@ TEST_x_SET
 TEST_x_CLR
 TEST_x_TOGGLE
 	
-	x: 1 / 2 / 3
+	x: 0 / 1 / 2 / 3
 ```
 <br>
 
@@ -303,6 +309,10 @@ The interface between the controller and the VS Code is through the USB serial p
 
 <br>
 <br>
+For enabling the Debug feature, uncomment the following line.  
+
+Both Serial Ports will be settled as required.  
+
 
 ```Debug
 lib/include/debug_cpu_r7fa4m1ab.h
@@ -318,3 +328,8 @@ lib/include/debug_cpu_r7fa4m1ab.h
 Directory *docs* contains several documents worth looking at.  
 Specially *Table XY pinout UNO R4.ods* describing the full pin-out relating *Renesas CPU/Arduino Uno card/GRBL definition*.  
 
+<br>
+<br>
+
+# Future developments
+Convert GRBL 1.1 to Arduino Uno R4
