@@ -327,9 +327,15 @@ lib/include/debug_cpu_r7fa4m1ab.h
 
 Directory *docs* contains several documents worth looking at.  
 Specially *Table XY pinout UNO R4.ods* describing the full pin-out relating *Renesas CPU/Arduino Uno card/GRBL definition*.  
+<br>
+<br>
+
+# Remains to be tested
+**_Coolant_** and **_Probe_** features
 
 <br>
 <br>
 
 # Future developments
-Convert GRBL 1.1 to Arduino Uno R4
+Convert to Arduino Uno R4 [GRBL 1.1](https://github.com/gnea/grbl) _(Copyright (c) 2011-2016 Sungeun K. Jeon for Gnea Research LLC)_
+   
