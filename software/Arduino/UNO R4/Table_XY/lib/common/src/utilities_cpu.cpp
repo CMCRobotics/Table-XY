@@ -212,9 +212,28 @@ for(idx = 0; idx < number; idx++){
 //-----------------------------------------------------------------------------
 // Initialices the Test pins for Arduino Uno R4
 // Name		Pin
+// TEST_0 	Analog Pin A3
 // TEST_1 	Analog Pin A4
 // TEST_2 	Analog Pin A5
 // TEST_3 	Digital Pin D13
+
+
+void debugPinOutputTest_0_init(void) {
+
+	// Output pin
+	PFS_WRITE_ENABLE;
+
+	R_PMISC->PWPR_b.B0WI = 1;
+	R_PMISC->PWPR_b.PFSWE = 1;
+
+	// Debug pins
+	// Init all bits to 0, standard setting
+	R_PFS->PORT[TEST_0_CPU_PORT].PIN[TEST_0_CPU_BIT].PmnPFS = 0UL;
+	R_PFS->PORT[TEST_0_CPU_PORT].PIN[TEST_0_CPU_BIT].PmnPFS_b.PDR = 1;  //Output
+
+	 PFS_WRITE_DISABLE;
+  }
+
 
 void debugPinOutputTest_1_init(void) {
 
@@ -231,6 +250,7 @@ void debugPinOutputTest_1_init(void) {
 
 	 PFS_WRITE_DISABLE;
   }
+
 
   void debugPinOutputTest_2_init(void) {
 
@@ -250,7 +270,6 @@ void debugPinOutputTest_1_init(void) {
 
 
   void debugPinOutputTest_3_init(void) {
-
 
 	// Output pin
 	PFS_WRITE_ENABLE;
@@ -272,13 +291,16 @@ void debugPinOutputTest_1_init(void) {
 // Inline function for Enabling SCI (2 or 9) TXI interruption
 // Process as detailed in (Renesas RA4M1 Group User’s Manual: Hardware, 28.3.3 (1), page 748)
 
-void EnableTXIinterruption (void){
+void EnableTXInterruption (void){
 
 	R_SCI->SCR = (R_SCI->SCR) & 0x5F;  // Clear TE and TIE
+
 	__NOP(); __NOP(); __NOP(); __NOP();
 	__NOP(); __NOP(); __NOP(); __NOP();
 	__NOP(); __NOP(); __NOP(); __NOP();
+
 	R_SCI->SCR = (R_SCI->SCR) | 0xA0;  // Set TE and TIE
+
 	__NOP(); __NOP(); __NOP(); __NOP();
 }
 

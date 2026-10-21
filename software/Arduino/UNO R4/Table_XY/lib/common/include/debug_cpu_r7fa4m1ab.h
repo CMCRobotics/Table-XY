@@ -20,12 +20,12 @@
 // Definitions for UART
 // Mode:
 //  If Normal mode is used:
-//    SCI 9: Program communication
+//    SCI 9: GRBL GUI exchange
 //    SCI 2: Not used
 //
 //  If Debug mode is used:
-//    SCI 9: Debug exchange with IDE
-//    SCI 2: Program communication
+//    SCI 9: Debug exchange
+//    SCI 2: GRBL GUI exchange
 //
 
-// #define SCI_MODE_DEBUG YES		// comment out for standard operation
+#define SCI_MODE_DEBUG YES		// comment out for Normal operation

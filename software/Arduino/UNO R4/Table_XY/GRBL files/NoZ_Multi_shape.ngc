@@ -1,0 +1,43 @@
+(Eliminated ALL Z commands)
+(Header)
+M5
+G21 (All units in mm)
+G90 (Absolute mode / G91 Relative mode)
+
+(---------------------------)
+(Go to start)
+
+G00 X91 Y82
+
+(---------------------------)
+(Start Line SawToooth)
+
+G01 X129 Y135 F100.000000
+G01 X163 Y106
+G01 X169 Y126
+
+(End Line SawTooth)
+(---------------------------)
+(Go to start)
+
+G00 X15 Y140
+
+(---------------------------)
+(Start Rectangle)
+
+G01 X77 Y140 F100.000000
+G01 X77 Y97
+G01 X15 Y97
+G01 X15 Y140
+
+(End Rectangle)
+(---------------------------)
+(Go to init point)
+
+M5
+G00 X0.0000 Y0.0000
+
+(---------------------------)
+(Footer)
+M2
+

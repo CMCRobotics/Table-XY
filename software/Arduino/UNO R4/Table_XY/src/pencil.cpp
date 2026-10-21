@@ -45,7 +45,7 @@ characters have been removed.
 char line_pencil_up[] = GCODE_PENCIL_UP;
 char line_pencil_down[] = GCODE_PENCIL_DOWN;
 
-uint8_t gc_execute_line(char *line)
+uint8_t gc_execute_line(char *line_exec)
 {
 
   uint8_t char_counter = 0;
@@ -53,13 +53,12 @@ uint8_t gc_execute_line(char *line)
 
   uint8_t execution_status;
 
-
-  while (line[char_counter] != 0) { // Loop until no more g-code words in line.
+   while (line_exec[char_counter] != 0) { // Loop until no more g-code words in line.
 
     // Import the next g-code word, expecting a letter followed by a value.
     // Any possible error will be detected when executing the GCode command line
 
-    if(line[char_counter] == 'Z') {
+    if(line_exec[char_counter] == 'Z') {
       //It is Zaxis movement
       char_counter++;
 
@@ -67,7 +66,7 @@ uint8_t gc_execute_line(char *line)
 
       line_pencil = (char *) &line_pencil_up;              // Assumes it is Pencil Up
 
-      if(line[char_counter] == '-'){
+      if(line_exec[char_counter] == '-'){
         // It is Pencil Down
         line_pencil = (char *) &line_pencil_down;
       }
@@ -76,7 +75,7 @@ uint8_t gc_execute_line(char *line)
         printString("Added: ");
         printString(line_pencil);
         printString(" - Original: ");
-        printString(line);
+        printString(line_exec);
         printString("\r\n");
       #endif
 
@@ -91,7 +90,7 @@ uint8_t gc_execute_line(char *line)
   }
 
   // execute initial command line
-  execution_status = gc_execute_line_actual(line);
+  execution_status = gc_execute_line_actual(line_exec);
   if(execution_status != STATUS_OK) { return execution_status;}
 
   // TODO: % to denote start of program.

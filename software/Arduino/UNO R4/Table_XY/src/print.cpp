@@ -65,6 +65,21 @@ void print_uint8_base10(uint8_t n)
   print_unsigned_int8(n,10,digits);
 }
 
+// Prints an uint16 variable with base 10 and number of digits depending on the value
+void print_uint16_base10(uint16_t n)
+{
+  uint8_t digits;
+
+  if (n < 100) { digits = 2; }
+  else if (n < 1000) { digits = 3; }
+  else if (n < 10000) { digits = 4; }
+  else { digits = 5; }
+
+  print_unsigned_int16(n,10,digits);
+
+}
+
+
 // Prints an uint16 variable with base and number of desired digits.
 void print_unsigned_int16(uint16_t n, uint8_t base, uint8_t digits)
 {

@@ -1,5 +1,5 @@
 /*
-Main Interruption via GPT3203 bit Timer 0
+Main Interruption via GPT320 32 bit Timer 0
 Generates:
   - Direction and Pulse X/Y/Z
   - Step X/Y/Z: High at CMPA, low at CMPB

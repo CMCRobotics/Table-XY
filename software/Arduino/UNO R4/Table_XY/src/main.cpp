@@ -51,14 +51,24 @@ void setup(void){
 
   // Initialize system upon power-up.
 
-  #ifdef DEBUG_TEST_1_TEST_2
-  // TEST 1 pin collides with COOLANT MIST pin
-  // If used, COOLANT nust be disabled
-  debugPinOutputTest_1_init();
+  #ifdef DEBUG_TEST_0
+    // TEST 0 pin collides with COOLANT ENABLE pin
+    // If used, COOLANT ENABLE is disabled
+    debugPinOutputTest_0_init();
+  #endif
 
-  // TEST 2 pin collides with PROBE pin
-  // If used, PROBE nust be disabled
-  debugPinOutputTest_2_init();
+
+  #ifdef DEBUG_TEST_1
+    // TEST 1 pin collides with COOLANT MIST pin
+    // If used, COOLANT MIST is disabled
+    debugPinOutputTest_1_init();
+  #endif
+
+  
+  #ifdef DEBUG_TEST_2
+    // TEST 2 pin collides with PROBE pin
+    // If used, PROBE is disabled
+    debugPinOutputTest_2_init();
   #endif
 
 

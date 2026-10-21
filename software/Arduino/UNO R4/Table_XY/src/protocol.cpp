@@ -95,6 +95,23 @@ void protocol_main_loop()
   uint8_t comment = COMMENT_NONE;
   uint8_t char_counter = 0;
   uint8_t c;
+  
+  //----------------------------------------
+  // Test & Debug Memories
+
+    /*
+    Test debug_mode:
+      0 : after reset or rewind
+      1: G command detected
+      2: G0 command detected
+      3: M command after G0x detected
+      4: Mx2/Mx3 command detected
+    */
+   //----------------------------------------
+
+  debug_mode = 0;
+  debug_idx = 0;
+
   for (;;) {
     // Process one line of incoming serial data, as the data becomes available. Performs an
     // initial filtering by removing spaces and comments and capitalizing all letters.
@@ -109,6 +126,17 @@ void protocol_main_loop()
     while((c = serial_read()) != SERIAL_NO_DATA) {
 
       if ((c == '\n') || (c == '\r')) { // End of line reached
+
+        //----------------------------------------------------
+        // Test: catching sequence command: G0x ...Mx2/3
+        if (debug_mode == 4){
+          //Mx2/3 arrived, but not all the expected passes, allow breakpoint and Rewind
+          __NOP();
+          debug_mode = 1;
+        }
+
+        // End Test
+        //----------------------------------------------------      
 
         line[char_counter] = 0; // Set string termination character.
         protocol_execute_line(line); // Line is complete. Execute it!
@@ -155,6 +183,66 @@ void protocol_main_loop()
           } else {
             line[char_counter++] = c;
           }
+        
+          //----------------------------------------------------
+          // Test: catching sequence command: G0x ...Mx2/3
+    
+          switch(debug_mode){
+            case 1:
+              // G detected
+              if (c == '0') {
+                debug_mode = 2;
+              }else {
+                // Command not G0x, reset
+                debug_mode = 0;
+              }
+              break;
+            
+            case 2:
+              // M detected?
+              if (c == 'M') {
+                debug_mode = 3;
+              }
+              break;
+    
+            case 3:
+              // check if M[0]2/3
+              switch(c){
+                case '0':
+                  break;
+    
+                case '2':
+                case '3':
+                  //Mx2 or Mx3 detected
+                  debug_mode = 4;
+                  debug_idx = 0;
+                  break;
+    
+                default:
+                  // None interesting
+                  debug_mode = 1;
+                  break;
+              }
+              break;
+    
+            case 4:
+              //Mx2 or Mx3 detected
+              // Count number of passes before allowing breackpoint
+
+              if (++debug_idx >= DEBUG_VALUE){
+                //Arrived maximum passes, allow breakpoint and Rewind
+                __NOP();
+                debug_mode = 1;
+              }
+              break;
+          
+            default:
+              if (c == 'G') debug_mode = 1;
+              break;          
+          }
+          
+          // End Test
+          //----------------------------------------------------
         }
       }
     }

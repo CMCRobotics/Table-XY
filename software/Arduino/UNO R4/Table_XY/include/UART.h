@@ -29,6 +29,9 @@
 void ISR_UART_Transmission(void);
 void ISR_UART_Reception(void);
 
+
+void function_ISR_UART_Reception(void);
+
 //--------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------
 #ifdef MAIN_FILE

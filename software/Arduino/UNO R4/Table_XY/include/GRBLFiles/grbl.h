@@ -75,7 +75,7 @@ Example
 
 // Define the Grbl system include files. NOTE: Do not alter organization.
 #include "cpu_map/cpu_map_r7fa4m1ab.h"
-#include "TestPins_1_2_debug.h"
+#include "TestPins_debug.h"
 
 #include "config.h"
 #include "pencil.h"

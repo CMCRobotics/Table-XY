@@ -1,0 +1,18 @@
+(Eliminated ALL Z commands)
+(Header)
+M5
+
+G21 (All units in mm)
+G90 (Absolute mode, G91 Relative mode)
+
+(---------------------------)
+(Go to start)
+G01 X91 Y82 F500
+M03S10
+
+G01 X191 Y182
+
+G01 X391 Y182
+
+(---------------------------)
+

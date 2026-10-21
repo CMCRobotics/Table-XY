@@ -68,8 +68,7 @@ __enable_irq();
 void ISRinterrupt_AGT1(void) {
 
   //-------------------------------------------------------------------------
-  // Also modify at the end of function, if it is Set/Clear
-  // TEST_2_SET; // Debug: Used to time ISR
+  // TEST_2_SET; // Debug
   //-------------------------------------------------------------------------
 
   //Clear Interrupt flag
@@ -83,8 +82,7 @@ void ISRinterrupt_AGT1(void) {
   Function_ISRinterrupt_ControlInput();
 
   //-------------------------------------------------------------------------
-  // Also modify at the end of function, if it is Set/Clear
-  // TEST_2_CLR; // Debug: Used to time ISR
+  // TEST_2_CLR; // Debug
   //-------------------------------------------------------------------------
 
 }

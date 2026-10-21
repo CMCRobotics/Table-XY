@@ -1,0 +1,46 @@
+(Header)
+M5
+G21 (All units in mm)
+G90 (Absolute mode)
+(G91 for Relative mode)
+
+(---------------------------)
+(Go to start)
+
+G00 Z1.000000
+G00 X91 Y82
+
+(---------------------------)
+(Start line SawToooth)
+
+G01 Z-1.000000 F100.0 (Penetrate)
+G01 X129 Y135 Z-1.000000 F500.000000
+G01 X163 Y106 Z-1.000000
+G01 X169 Y126 Z-1.000000
+
+(End Line SawTooth)
+
+(---------------------------)
+(Go to start)
+G00 Z1.000000
+G00 X15 Y140
+
+(---------------------------)
+(Start Rectangle)
+
+G01 Z-1.000000 F300.0 (Penetrate)
+G01 X77 Y140 Z-1.000000 F800.000000
+G01 X77 Y97 Z-1.000000
+G01 X15 Y97 Z-1.000000
+G01 X15 Y140 Z-1.000000
+
+(End Rectangle)
+
+(---------------------------)
+(Go to init point)
+M5
+G00 X0.0000 Y0.0000 Z1.000
+
+(---------------------------)
+(Footer)
+M2

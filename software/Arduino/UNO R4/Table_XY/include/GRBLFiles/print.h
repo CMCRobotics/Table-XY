@@ -30,6 +30,7 @@ void printInteger(long n);
 void print_uint32_base10(uint32_t n);
 
 // Prints uint16 variable with base and number of desired digits.
+void print_uint16_base10(uint16_t n);
 void print_unsigned_int16(uint16_t n, uint8_t base, uint8_t digits);
 
 // Prints uint8 variable with base and number of desired digits.

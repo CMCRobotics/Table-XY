@@ -41,7 +41,20 @@
 void report_status_message(uint8_t status_code)
 {
   if (status_code == 0) { // STATUS_OK
+
+    //-----------------------------------------------------------------------------------------
+    // Test point
+    TEST_0_SET;
+    //-----------------------------------------------------------------------------------------
+    
     printString("ok\r\n");
+
+    //-----------------------------------------------------------------------------------------
+    // Test point
+    TEST_0_CLR;
+    //-----------------------------------------------------------------------------------------
+
+    
   } else {
     printString("error: ");
     #ifdef REPORT_GUI_MODE
@@ -152,23 +165,23 @@ void report_init_message()
 // Grbl help message
 void report_grbl_help() {
   #ifndef REPORT_GUI_MODE
-    printString("$M (view this Menu)\r\n"
-                        "$$ (view Grbl settings)\r\n"
-                        "$# (view # parameters)\r\n"
-                        "$G (view parser state)\r\n"
-                        "$I (view GRBL general build info)\r\n"
-                        "$P (view Pencil build info)\r\n"
-                        "$A (view debug_data array)\r\n"
-                        "$N (view startup blocks)\r\n"
-                        "$x=value (save Grbl setting)\r\n"
-                        "$Nx=line (save startup block)\r\n"
-                        "$C (check gcode mode)\r\n"
-                        "$X (kill alarm lock)\r\n"
-                        "$H (run homing cycle)\r\n"
-                        "~ (cycle start)\r\n"
-                        "! (feed hold)\r\n"
-                        "? (current status)\r\n"
-                        "ctrl-x (reset Grbl)\r\n");
+    printString("$M (view this Menu)\r\n");
+    printString("$$ (view Grbl settings)\r\n");
+    printString("$# (view # parameters)\r\n");
+    printString("$G (view parser state)\r\n");
+    printString("$I (view GRBL general build info)\r\n");
+    printString("$P (view Pencil build info)\r\n");
+    printString("$A (view debug_data array)\r\n");
+    printString("$N (view startup blocks)\r\n");
+    printString("$x=value (save Grbl setting)\r\n");
+    printString("$Nx=line (save startup block)\r\n");
+    printString("$C (check gcode mode)\r\n");
+    printString("$X (kill alarm lock)\r\n");
+    printString("$H (run homing cycle)\r\n");
+    printString("~ (cycle start)\r\n");
+    printString("! (feed hold)\r\n");
+    printString("? (current status)\r\n");
+    printString("ctrl-x (reset Grbl)\r\n");
   #endif
 }
 
@@ -492,7 +505,7 @@ void report_realtime_status()
   // Report serial read buffer status
   if (bit_istrue(settings.status_report_mask,BITFLAG_RT_STATUS_SERIAL_RX)) {
     printString(",RX:");
-    print_uint8_base10(serial_get_rx_buffer_count());
+    print_uint16_base10(serial_get_rx_buffer_count());
   }
 
   #ifdef USE_LINE_NUMBERS

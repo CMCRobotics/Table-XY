@@ -26,9 +26,9 @@
 uint8_t probe_invert_mask;
 
 
-#ifdef DEBUG_TEST_1_TEST_2
+#ifdef DEBUG_TEST_2
 
-// Coolant and Probe are NOT USED
+// Probe is NOT USED
 void probe_init() {__NOP();}
 void probe_configure_invert_mask() {__NOP();}
 uint8_t probe_get_state() {return 0;}

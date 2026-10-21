@@ -21,9 +21,9 @@
 
 #include "grbl.h"
 
-#ifdef DEBUG_TEST_1_TEST_2
+#if defined(DEBUG_TEST_0) || defined(DEBUG_TEST_1)
 
-// Coolant and Probe are NOT USED
+// Coolant is NOT USED
 void coolant_init() {__NOP();};
 void coolant_stop() {__NOP();};
 void coolant_set_state(uint8_t mode) {__NOP();};

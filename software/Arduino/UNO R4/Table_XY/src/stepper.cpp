@@ -50,10 +50,15 @@
 */
 
 // For R4: 48MHz = 16MHz * 3
+/*
 #define AMASS_LEVEL1 ((F_CPU * 3)/(8000)) // Over-drives ISR (x2). Defined as F_CPU/(Cutoff frequency in Hz)
 #define AMASS_LEVEL2 ((F_CPU * 3)/(4000)) // Over-drives ISR (x4)
 #define AMASS_LEVEL3 ((F_CPU * 3)/(2000)) // Over-drives ISR (x8)
+*/
 
+#define AMASS_LEVEL1 (F_CPU/(3 * 8000)) // Over-drives ISR (x2). Defined as F_CPU/(Cutoff frequency in Hz)
+#define AMASS_LEVEL2 (F_CPU/(3 * 4000)) // Over-drives ISR (x4)
+#define AMASS_LEVEL3 (F_CPU/(3 * 2000)) // Over-drives ISR (x8)
 
 
 // Stores the planner block Bresenham algorithm execution data for the segments in the segment
@@ -109,6 +114,8 @@ typedef struct {
   segment_t *exec_segment;  // Pointer to the segment being executed
 } stepper_t;
 static stepper_t st;
+
+static volatile boolean pulse_motor_active;    // True: Pulse motor is being generated, wait till Pulse Moxot [X/Y/Z] is cleared before ending
 
 // Step segment ring buffer indices
 static volatile uint8_t segment_buffer_tail;
@@ -191,7 +198,8 @@ static st_prep_t prep;
   are shown and defined in the above illustration.
 */
 
-
+//-----------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
 // Stepper state initialization. Cycle should only start if the st.cycle_start flag is
 // enabled. Startup init and limits call this function but shouldn't start the cycle.
 void st_wake_up()
@@ -232,19 +240,25 @@ void st_wake_up()
   }
 }
 
-
+//-----------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
 // Stepper shutdown
 void st_go_idle()
 {
   // Disable Stepper Driver Interrupt. Allow Stepper Port Reset Interrupt to finish, if active.
   // This MUST be done in IRS CMPB function, for allowing the Step pulse to be ended correctly
   step_pulse_stop = true;
-
   busy = false;
+  if (!pulse_motor_active) GPT320_disable();
 
   // Set stepper driver idle state, disabled or enabled, depending on settings and circumstances.
   bool pin_state = false; // Keep enabled.
   if (((settings.stepper_idle_lock_time != 0xff) || sys.rt_exec_alarm) && sys.state != STATE_HOMING) {
+
+    //----------------------------------------
+    TEST_2_SET;
+    //----------------------------------------
+    
     // Force stepper dwell to lock axes for a defined amount of time to ensure the axes come to a complete
     // stop and not drift from residual inertial forces at the end of the last movement.
     delay_ms(settings.stepper_idle_lock_time);
@@ -305,12 +319,13 @@ void st_go_idle()
 // int8 variables and update position counters only when a segment completes. This can get complicated
 // with probing and homing cycles that require true real-time positions.
 
+//-----------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
 void ISRinterrupt_Motor_Main(void){
   // This is only for allowing to correctly generate the Test Point,
   //  without having to look at all the return positions
 
   //-------------------------------------------------------------------------
-  // Also modify at the end of function & at return, if it is Set/Clear
   TEST_3_SET; // Debug: Used to time ISR
   //-------------------------------------------------------------------------
 
@@ -318,12 +333,13 @@ void ISRinterrupt_Motor_Main(void){
 
   //-------------------------------------------------------------------------
   TEST_3_CLR; // Debug: Used to time ISR
+  TEST_2_CLR;
   //-------------------------------------------------------------------------
-
 }
 
-// Actual Motor function
 
+
+// Actual Motor function
 void functionISRinterrupt_Motor_Main(void)
 {
   //Clear Interrupt flag
@@ -346,14 +362,19 @@ void functionISRinterrupt_Motor_Main(void)
     st.step_bits = st.step_outbits; // Store out_bits to prevent overwriting.
 
   #else  // Normal operation
+    pulse_motor_active = false;
+
     STEP_PORT_WRITE = (STEP_PORT_READ & ~STEP_MASK) | st.step_outbits;
+
+    if (st.step_outbits)     pulse_motor_active = true;
+
   #endif
 
  busy = true;
 
   __enable_irq(); // Re-enable interrupts to allow Stepper Port Reset Interrupt to fire on-time.
 
-  // NOTE: The remaining code in this ISR will finish before returning to main program.
+  // NOTE: The remaining code in this ISR SHOULD finish before returning to main program.
 
   // If there is no step segment, attempt to pop one from the stepper buffer
   if (st.exec_segment == NULL) {
@@ -364,7 +385,10 @@ void functionISRinterrupt_Motor_Main(void)
 
       #ifndef ADAPTIVE_MULTI_AXIS_STEP_SMOOTHING
         // When AMASS is disabled, set timer prescaler for segments with slow step frequencies (< 250Hz).
+        // NOT CONVERTED !!!!!!!!
+
         TCCR1B = (TCCR1B & ~(0x07<<CS10)) | (st.exec_segment->prescaler<<CS10);
+
       #endif
 
       // Initialize step segment timing per step and load number of steps to execute.
@@ -401,6 +425,7 @@ void functionISRinterrupt_Motor_Main(void)
 
     } else {
       // Segment buffer empty. Shutdown.
+      
       st_go_idle();
       bit_true_atomic(sys.rt_exec_state,EXEC_CYCLE_STOP); // Flag main program for cycle end
       return; // Nothing to do but exit.
@@ -462,6 +487,8 @@ void functionISRinterrupt_Motor_Main(void)
 
 }
 
+//-----------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
 
 /* The Stepper Port Reset Interrupt: Timer320 CMPB interrupt handles the falling edge of the step
    pulse. This should always trigger before the next Timer320 OVF interrupt and ALWAYS
@@ -477,10 +504,6 @@ void functionISRinterrupt_Motor_Main(void)
 
 // Step Pulse ended
 void ISRinterrupt_Motor_StepPulseEnd(void) {
-  //-------------------------------------------------------------------------
-  // Also modify at the end of function, if it is Set/Clear
-  // TEST_1_SET; // Debug: Used to time ISR
-  //-------------------------------------------------------------------------
 
   //Pulse high Ended, Clear Motor step Pulse
   R_GPT0->GTST_b.TCFB = 0;                // Clear Comp-B Flag
@@ -495,11 +518,7 @@ void ISRinterrupt_Motor_StepPulseEnd(void) {
     // Stop Timer GPT320
     GPT320_disable();
   }
-
-  //-------------------------------------------------------------------------
-  // Also modify at the end of function
-  // TEST_1_CLR; // Debug: Used to time ISR
-  //-------------------------------------------------------------------------
+  pulse_motor_active = false;
 
 }
 
@@ -513,10 +532,6 @@ void ISRinterrupt_Motor_StepPulseEnd(void) {
 
   // Delay between Direction signal and Step Pulse signal
 void ISRinterrupt_Motor_DelayEnd(void) {
-  //-------------------------------------------------------------------------
-  // Also modify at the end of function, if it is Set/Clear
-  // TEST_1_SET; // Debug: Used to time ISR
-  //-------------------------------------------------------------------------
 
   //Delay Direction-Step ended, set Motor step Pulse
   R_GPT0->GTST_b.TCFA = 0;                // Clear Comp-A Flag
@@ -527,15 +542,11 @@ void ISRinterrupt_Motor_DelayEnd(void) {
 
   STEP_PORT_WRITE = (STEP_PORT_READ & ~STEP_MASK) | st.step_bits;
 
-  //-------------------------------------------------------------------------
-  // Also modify at the end of function
-  // TEST_1_CLR; // Debug: Used to time ISR
-  //-------------------------------------------------------------------------
-
 }
 #endif
 
-//-------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
 // Generates the step and direction port invert masks used in the Stepper Interrupt Driver.
 void st_generate_step_dir_invert_masks()
 {
@@ -548,7 +559,8 @@ void st_generate_step_dir_invert_masks()
   }
 }
 
-//-------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
 // Reset and clear stepper subsystem variables
 void st_reset()
 {
@@ -572,7 +584,9 @@ void st_reset()
   DIRECTION_PORT_WRITE = (DIRECTION_PORT_READ & ~DIRECTION_MASK) | dir_port_invert_mask;
 }
 
-//-------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
+
 // Initialize and start the stepper motor subsystem
 void stepper_init()
 {
@@ -584,7 +598,8 @@ void stepper_init()
 
 }
 
-//-------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
 // Called by planner_recalculate() when the executing block is updated by the new plan.
 void st_update_plan_block_parameters()
 {
@@ -595,7 +610,8 @@ void st_update_plan_block_parameters()
   }
 }
 
-
+//-----------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
 /* Prepares step segment buffer. Continuously called from main program.
 
    The segment buffer is an intermediary buffer interface between the execution of steps
@@ -877,7 +893,8 @@ void st_prep_buffer()
       }
 
       // R3 Original: prep_segment->cycles_per_tick = cycles;
-      prep_segment->cycles_per_tick = cycles * 0.2; // Period / 5
+      // Hangs-up: prep_segment->cycles_per_tick = cycles * 0.2; // Period / 5
+      prep_segment->cycles_per_tick = cycles; // Period
 
     #else
 		// TODO if no AMASS is used
@@ -929,7 +946,8 @@ void st_prep_buffer()
   }
 }
 
-
+//-----------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------
 // Called by realtime status reporting to fetch the current speed being executed. This value
 // however is not exactly the current speed, but the speed computed in the last step segment
 // in the segment buffer. It will always be behind by up to the number of segment blocks (-1)

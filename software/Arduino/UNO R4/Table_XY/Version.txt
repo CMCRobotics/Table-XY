@@ -1,9 +1,6 @@
 Detail of versions
 	Conversion of TableXY GRBL 0.9i with Servo as spindle for arduino Uno R4 WiFi
 
-ATTENTION:
-	SOME parts of original GRBL code are commented out until their conversion to Arduino Uno R4 is made
-
 ----------------------------------------
 Version: R4 0.003
 
@@ -1241,3 +1238,33 @@ Author: Jose Luis Gomez Costa
 			M03 S00 pulse:	640	 usec	GCODE_PENCIL_UP
 
 			Not Inverted
+
+----------------------------------------
+Version: R4 GRBL 0.982
+
+Date:	08/10/2026
+Author: Jose Luis Gomez Costa
+
+	debug_cpu_r7fa4m1ab.h
+		Changed comment text.
+
+	TestPins_1_2_debug.h
+		Definitions for TEST1/2 are separated
+
+	stepper.cpp	
+		Text in comments
+
+----------------------------------------
+Version: R4 GRBL 0.990
+
+Date:	21/10/2026
+Author: Jose Luis Gomez Costa
+
+	Solved Hanging:
+		stepper.cpp:
+			void st_prep_buffer()
+				Changed: prep_segment->cycles_per_tick = cycles * 0.2; // Period / 5 for original R3: prep_segment->cycles_per_tick = cycles; //Period
+	
+	Limits/Control re-Enabled
+	
+

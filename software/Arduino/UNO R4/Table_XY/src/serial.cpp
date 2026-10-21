@@ -22,15 +22,6 @@
 
 #include <grbl.h>
 
-volatile uint8_t serial_rx_buffer[RX_BUFFER_SIZE];
-volatile char serial_tx_buffer[TX_BUFFER_SIZE + 1];
-
-volatile uint16_t serial_rx_buffer_head = 0;
-volatile uint16_t serial_rx_buffer_tail = 0;
-
-volatile uint16_t serial_tx_idx;
-volatile boolean serial_tx_busy = false;
-
 #ifdef ENABLE_XONXOFF
   volatile uint8_t flow_ctrl = XON_SENT; // Flow control state variable
 #endif
@@ -124,10 +115,31 @@ void serial_init()
 
 void serial_write(char *string_data) {
 
+  //-----------------------------------------------------------------------------------------
+  // Test point
+  TEST_1_SET;
+  //-----------------------------------------------------------------------------------------
+
   // Wait until previous has been transferred
   while (serial_tx_busy) {
     // TODO: Restructure st_prep_buffer() calls to be executed here during a long print.
-    if (sys.rt_exec_state & EXEC_RESET) { return; } // Only check for abort to avoid an endless loop.
+    
+    //-------------------------------------------------------------------------
+    // TEST_2_SET; // Debug
+    //-------------------------------------------------------------------------
+
+    if (sys.rt_exec_state & EXEC_RESET) { 
+      
+      //Disable TX Interruption
+      UART_INTERRUPT_TXI_DISABLE;  // TXI interruption Disabled
+      serial_tx_busy = false;
+
+      //-------------------------------------------------------------------------
+      // TEST_2_CLR; // Debug
+      //-------------------------------------------------------------------------
+
+      return; 
+    } // Only check for abort to avoid an endless loop.
   }
 
   // Copy to Transfer memory
@@ -137,8 +149,11 @@ void serial_write(char *string_data) {
   serial_tx_busy = true;
   serial_tx_idx = 0;
 
-  // Enable Data Register Empty Interrupt to make sure tx-streaming is running
-    EnableTXIinterruption();
+  // Enable Data Register Empty Interrupt to be sure tx-streaming is running
+    EnableTXInterruption();
+    //-------------------------------------------------------------------------
+    TEST_2_CLR; // Debug
+    //-------------------------------------------------------------------------
 }
 
 //---------------------------------------------------------------------------------------------------
@@ -158,13 +173,19 @@ void ISR_UART_Transmission(void)
     if (serial_tx_buffer[serial_tx_idx] != 0){
       // Send a byte from the buffer
       UART_TX_register = serial_tx_buffer[serial_tx_idx++];
-
     } else{
-      // Wait till last byte has been transferred
-      while ( R_SCI->SSR_b.TEND == 0){__NOP();};
+      // Wait till last bit has been transferred
+      while ( R_SCI->SSR_b.TEND == 0){
+        __NOP();
+      };
 
       UART_INTERRUPT_TXI_DISABLE;  // TXI interruption Disabled
       serial_tx_busy = false;
+
+      //-----------------------------------------------------------------------------------------
+      // Test point
+      TEST_1_CLR;   
+      //-----------------------------------------------------------------------------------------
     }
   }
 
@@ -180,21 +201,39 @@ void ISR_UART_Transmission(void)
 uint16_t serial_get_rx_buffer_count()
 {
   uint16_t rtail = serial_rx_buffer_tail; // Copy to limit multiple calls to volatile
+
   if (serial_rx_buffer_head >= rtail) { return(serial_rx_buffer_head-rtail); }
-  return (RX_BUFFER_SIZE - (rtail-serial_rx_buffer_head));
+  return ( (uint16_t)RX_BUFFER_SIZE - (rtail-serial_rx_buffer_head));
 }
 
 //----------------------------------------------------------------------------
 // Fetches the first byte in the serial read buffer. Called by main program.
-uint8_t serial_read(){
+
+// This allows setting easily a TestPoint, without bothering about possible branches on actual functions
+
+uint8_t serial_read(void)
+{
+  uint8_t function_return;
+
+  function_return = function_serial_read();
+
+  return function_return;
+}
+
+//Actual function
+uint8_t function_serial_read(void)
+  {
   uint16_t tail = serial_rx_buffer_tail; // Temporary serial_rx_buffer_tail (to optimize for volatile)
+  uint8_t data;
+
   if (serial_rx_buffer_head == tail) {
     return SERIAL_NO_DATA;
+
   } else {
-    uint8_t data = serial_rx_buffer[tail];
+    data = serial_rx_buffer[tail];
 
     tail++;
-    if (tail == RX_BUFFER_SIZE) { tail = 0; }
+    if (tail == (uint16_t) RX_BUFFER_SIZE) { tail = 0; }
     serial_rx_buffer_tail = tail;
 
     #ifdef ENABLE_XONXOFF
@@ -203,7 +242,7 @@ uint8_t serial_read(){
         // UCSR0B |=  (1 << UDRIE0); // Force TX
       }
     #endif
-
+  
     return data;
   }
 }
@@ -222,7 +261,16 @@ void serial_reset_read_buffer()
 //----------------------------------------------------------------------------
 // Reception of Serial data
 
+// This allows setting easily a TestPoint, without bothering about possible branches on actual function
+
 void ISR_UART_Reception(void)
+{
+  function_ISR_UART_Reception();
+}
+
+
+// Actual function
+void function_ISR_UART_Reception(void)
 {
   uint8_t data = UART_RX_register;
   uint16_t next_head;
@@ -239,7 +287,7 @@ void ISR_UART_Reception(void)
     default: // Write character to buffer
 
       next_head = serial_rx_buffer_head + 1;
-      if (next_head == RX_BUFFER_SIZE) { next_head = 0; }
+      if (next_head == (uint16_t)RX_BUFFER_SIZE) { next_head = 0; }
 
       // Write data to buffer unless it is full.
       if (next_head != serial_rx_buffer_tail) {
@@ -252,10 +300,11 @@ void ISR_UART_Reception(void)
             // UCSR0B |=  (1 << UDRIE0); // Force TX
           }
         #endif
-
-        break;
-      }
+      }else{
       //TODO: else alarm on overflow?
+      __NOP();
+      }
+    break;
   };
 
   R_ICU->IELSR_b[UART_INTERRUPT_EVENT_RXI_IELSRindex].IR = 0;   // Clear Interruption Flag

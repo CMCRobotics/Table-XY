@@ -20,7 +20,6 @@
 
 
 #include <Arduino.h>
-#include "serial.h"
 #include "print.h"
 
 void print_int8_base16(uint8_t n);

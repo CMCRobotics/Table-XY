@@ -38,12 +38,13 @@ void printCPURegisterValues(u_int16_t *reg_ptr, int number, char *text);
 void printCPURegisterValues(u_int8_t *reg_ptr, int number, char *text);
 
 // Test pins
+void debugPinOutputTest_0_init(void);
 void debugPinOutputTest_1_init(void);
 void debugPinOutputTest_2_init(void);
 void debugPinOutputTest_3_init(void);
 
 // Inline function for Enabling TXI interruption
-void EnableTXIinterruption (void);
+void EnableTXInterruption (void);
 
 
 // Delay functions
@@ -55,10 +56,18 @@ void _delay_us(unsigned int);
 //--------------------------------------------------------------------------------------
 // Define Probe test signals
 
+#define TEST_0_CPU_PORT   0
+#define TEST_0_CPU_BIT    2 // Arduino Uno R4 Analog Pin A3
+
+#define TEST_0_SET  (R_PORT0->PODR_b.PODR2 = 1) // Debug
+#define TEST_0_CLR  (R_PORT0->PODR_b.PODR2 = 0)
+#define TEST_0_TOGGLE   ((R_PORT0->PIDR_b.PIDR2)? TEST_0_CLR: TEST_0_SET)
+
+
 #define TEST_1_CPU_PORT   1
 #define TEST_1_CPU_BIT    1 // Arduino Uno R4 Analog Pin A4
 
-#define TEST_1_SET  (R_PORT1->PODR_b.PODR1 = 1) // Debug: Used to time ISR
+#define TEST_1_SET  (R_PORT1->PODR_b.PODR1 = 1) // Debug
 #define TEST_1_CLR  (R_PORT1->PODR_b.PODR1 = 0)
 #define TEST_1_TOGGLE   ((R_PORT1->PIDR_b.PIDR1)? TEST_1_CLR: TEST_1_SET)
 

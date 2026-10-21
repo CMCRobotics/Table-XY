@@ -72,10 +72,15 @@ void limits_init(){
 uint8_t limits_get_state()
 {
   uint8_t limit_state = 0;
-  boolean active_low = true;
+  boolean active_low = false;
+
+  if (bit_isfalse(settings.flags,BITFLAG_HARD_LIMIT_ENABLE)) return 0;    // No hard Limit
+
+  if(disable_limits) return 0; // Hard Limits disabled for cycle duration
+
 
   //Actions related to the Limit bits
-  if (bit_isfalse(settings.flags,BITFLAG_INVERT_LIMIT_PINS)) { active_low = false; }
+  if (bit_isfalse(settings.flags,BITFLAG_INVERT_LIMIT_PINS)) { active_low = true; }    // Active value is Low
 
 
   if (  checkControlLimitStatus (LIMIT_X_GET, &LimitX_ctr, active_low) ){
@@ -112,7 +117,7 @@ uint8_t limits_get_state()
 
 
 // Limit bits:
-//  - have Pull-up:
+//  - Have Pull-up:
 //    - Normally high -> no signal
 //    - Low: button pressed
 //
